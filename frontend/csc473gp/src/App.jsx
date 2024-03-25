@@ -3,9 +3,12 @@ import React from 'react'
 // Libraries
 import {Route, Routes} from 'react-router-dom'
 
-// Components
+// Controller Components
 import { UserAuthContextProvider } from './components/UserAuthentication'
 import ProtectedRoute from './components/ProtectedRoute'
+
+// UI Components
+import Navbar from './components/Navbar'
 
 // Pages
 import Landing from './pages/Landing'
@@ -17,6 +20,7 @@ import Profile from './pages/Profile'
 const App = () => {
   return (
     <UserAuthContextProvider>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Landing/>}/>
         <Route path="/login" element={<Login/>}/>
