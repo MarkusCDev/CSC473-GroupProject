@@ -1,10 +1,34 @@
 import React from 'react'
 
+// Libraries
+import {Route, Routes} from 'react-router-dom'
+
+// Controller Components
+import { UserAuthContextProvider } from './components/UserAuthentication'
+import ProtectedRoute from './components/ProtectedRoute'
+
+// UI Components
+import Navbar from './components/Navbar'
+
+// Pages
+import Landing from './pages/Landing'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Profile from './pages/Profile'
+
+
 const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <UserAuthContextProvider>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Landing/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+
+        <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
+      </Routes>
+    </UserAuthContextProvider>
   )
 }
 
