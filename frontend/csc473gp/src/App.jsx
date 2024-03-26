@@ -15,6 +15,7 @@ import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Profile from './pages/Profile'
+import AddItem from './pages/AddItem'
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/signup" element={<Signup/>}/>
 
         <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
+        <Route path="/add-item" element={<ProtectedRoute><AddItem/></ProtectedRoute>}/>
       </Routes>
     </UserAuthContextProvider>
   )
