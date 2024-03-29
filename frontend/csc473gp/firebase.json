@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "frontend/csc473/dist",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
