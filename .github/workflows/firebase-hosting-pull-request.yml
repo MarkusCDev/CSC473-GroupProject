@@ -38,6 +38,7 @@ jobs:
         repoToken: "${{ secrets.GITHUB_TOKEN }}"
         firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CSC473_FF414 }}"
         projectId: csc473-ff414
+        entryPoint: frontend/csc473gp
         expires: 1d 
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
