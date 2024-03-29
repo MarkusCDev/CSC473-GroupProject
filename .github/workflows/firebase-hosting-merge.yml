@@ -41,5 +41,5 @@ jobs:
         args: deploy --only hosting -P ccny-shuttle-a35ec
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        PROJECT_PATH: frontend/csc473gp
+        PROJECT_PATH: ./frontend/csc473gp
         
