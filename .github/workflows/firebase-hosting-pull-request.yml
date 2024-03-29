@@ -16,10 +16,10 @@ jobs:
         node-version: '18.x' # Match this with your project's Node.js version
 
     - name: Install Dependencies
-      run: npm install
+      run: npm install --prefix frontend
 
     - name: Build
-      run: npm run build
+      run: npm run build --prefix frontend
       env:
         VITE_APP_FIREBASE_API_KEY: ${{ secrets.VITE_APP_FIREBASE_API_KEY }}
         VITE_APP_FIREBASE_APP_ID: ${{ secrets.VITE_APP_FIREBASE_APP_ID }}
