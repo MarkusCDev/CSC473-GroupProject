@@ -18,9 +18,11 @@ jobs:
 
     - name: Install Dependencies
       run: npm install
+      working-directory: frontend/csc473gp
 
     - name: Build
       run: npm run build
+      working-directory: frontend/csc473gp
       env:
         VITE_APP_FIREBASE_API_KEY: ${{ secrets.VITE_APP_FIREBASE_API_KEY }}
         VITE_APP_FIREBASE_APP_ID: ${{ secrets.VITE_APP_FIREBASE_APP_ID }}
