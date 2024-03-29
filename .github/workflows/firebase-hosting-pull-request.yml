@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - run: cd frontend/csc473gp
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -16,9 +17,7 @@ jobs:
         node-version: '18.x' # Match this with your project's Node.js version
 
     - name: Install Dependencies
-      run: |
-        cd csc473gp
-        npm install 
+      run: npm install 
 
     - name: Build
       run: npm run build 
