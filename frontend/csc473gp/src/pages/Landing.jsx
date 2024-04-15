@@ -4,7 +4,11 @@ import React from 'react'
 
 const Landing = () => {
   return (
-    <div>Landing</div>
+    <div className='flex min-h-screen bg-gradient-to-b from-stone-300 to-stone-500 items-center justify-center px-4 mt-2 sm:px-6 lg:px-8'>
+      <div>
+          <p>Landing</p>
+      </div>
+    </div>
   )
 }
 

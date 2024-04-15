@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom"
 import { setDoc, doc } from 'firebase/firestore'
 import { db } from '../firebase'
 import logo from '../assets/logo.png'
+import axios from "axios"
 
 
 const Signup = () => {
@@ -26,8 +27,9 @@ const Signup = () => {
         }
         try {
             await signUp(email, password)
-            await addUserdata()
-            navigate("/login")
+            //await addUserdata()
+            await addBackEndData()
+            navigate("/")
           } catch (err) {
             console.log(err)
           }
@@ -46,6 +48,31 @@ const Signup = () => {
           console.log("Document added successfully")
         } catch (error) {
           console.log("Sign In Error:", error)
+        }
+      }
+
+      const addBackEndData = async () => {
+        try {
+          // Make an API call to create user profile
+          const response = await axios.post(
+            `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/create_profile`,
+            {
+              email: email,
+            },
+            {
+              headers: {
+                Authorization: `${email}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+    
+          console.log("Profile created:", response.data);
+    
+          navigate("/");
+        } catch (error) {
+          setError("Error creating profile. Please try again.");
+          console.error(error);
         }
       }
 
@@ -70,7 +97,7 @@ const Signup = () => {
     
 
   return (
-    <div className='flex min-h-screen bg-gradient-to-b from-stone-300 to-stone-500 items-center justify-center px-4 mt-2 sm:px-6 lg:px-8;'>
+    <div className='flex min-h-screen bg-gradient-to-b from-stone-300 to-stone-500 items-center justify-center px-4 mt-2 sm:px-6 lg:px-8'>
       <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl m-auto bg-white rounded-lg p-5">
 
         <p className='text-center font-bold text-xl'><h1>Sign Up</h1></p>
@@ -89,7 +116,7 @@ const Signup = () => {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
+              className="w-full p-2 mb-6 text-blue-700 border-b-2 border-blue-500 outline-none focus:bg-gray-300"
               name="username"
             />
           </div>
@@ -105,7 +132,7 @@ const Signup = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
+                className="w-full p-2 mb-6 text-blue-700 border-b-2 border-blue-500 outline-none focus:bg-gray-300"
                 name="password"
               />
               <button
@@ -150,7 +177,7 @@ const Signup = () => {
                 placeholder="Confirm Password"
                 value={confirmPwd}
                 onChange={(e) => setconfirmPwd(e.target.value)}
-                className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
+                className="w-full p-2 mb-6 text-blue-700 border-b-2 border-blue-500 outline-none focus:bg-gray-300"
                 name="confirmPassword"
               />
               <button
@@ -186,12 +213,12 @@ const Signup = () => {
           )}
 
           {/* SignUp Button */}
-          <button className="w-full bg-indigo-700 hover:bg-purple-700 text-white font-bold py-2 px-4 mb-6 rounded transition-colors duration-300" type="submit">Sign up</button>
+          <button className="w-full bg-blue-700 hover:bg-green-700 text-white font-bold py-2 px-4 mb-6 rounded transition-colors duration-300" type="submit">Sign up</button>
         </form>
 
         {/* Login Link */}
         <div className="text-center">
-            <Link className="text-indigo-700 hover:text-purple-700 text-sm" to="/login">Already have an Account? Login</Link>
+            <Link className="text-blue-700 hover:text-purple-700 text-sm" to="/login">Already have an Account? Login</Link>
         </div>
       </div>
     </div>
