@@ -1,10 +1,19 @@
 import React from 'react'
+import ImageCarousel from '../components/Carousel'
+import Navigator from '../components/Navigator'
+
 
 // TODO - carrousel slide show thing with log and etc
 
 const Landing = () => {
   return (
-    <div className='flex min-h-screen bg-gradient-to-b from-stone-300 to-stone-500 items-center justify-center px-4 mt-2 sm:px-6 lg:px-8'>
+    <div className='flex flex-col min-h-screen bg-gradient-to-b from-stone-300 to-stone-500'>
+      <div className='w-full'>
+        <Navigator />
+      </div>
+      <div className='w-full'>
+        <ImageCarousel/>
+      </div>
       <div>
           <p>Landing</p>
       </div>
