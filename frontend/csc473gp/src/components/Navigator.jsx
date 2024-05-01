@@ -14,7 +14,7 @@ const Navigator = () => {
           />
         </div>
         <a href="" className="hover:text-gray-300">Auction</a>
-        <a href="" className="hover:text-gray-300">Trade</a>
+        <a href="/Trading" className="hover:text-gray-300">Trade</a>
       </div>
     </div>
   )
