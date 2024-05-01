@@ -5,7 +5,7 @@ const Navigator = () => {
     <div className="bg-gray-800 text-white p-4">
       <div className="flex justify-around items-center max-w-6xl mx-auto">
         <a href="/Buying" className="hover:text-gray-300">Buy</a>
-        <a href="" className="hover:text-gray-300">Sell</a>
+        <a href="/Selling" className="hover:text-gray-300">Sell</a>
         <div>
           <input
             type="text"

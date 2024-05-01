@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navigator from '../components/Navigator'; // Added import statement
 
 const Buying = () => {
     const [sneakers, setSneakers] = useState([]);
@@ -28,6 +29,8 @@ const Buying = () => {
     }, [brand, size, minPrice, maxPrice]); // This effect will re-run when any of these values change.
 
     return (
+        <div>
+            <Navigator /> {/* Added Navigator component */}
         <div className='flex min-h-screen bg-gradient-to-b from-stone-300 to-stone-500 items-center justify-center px-4 mt-2 sm:px-6 lg:px-8'>
             <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl m-auto bg-white rounded-lg p-5">
                 <h1 className='text-center font-bold text-xl'>Buy Sneakers</h1>
@@ -77,6 +80,7 @@ const Buying = () => {
                     ))}
                 </ul>
             </div>
+        </div>
         </div>
     );
 };
