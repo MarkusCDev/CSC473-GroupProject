@@ -18,6 +18,11 @@ import Profile from './pages/Profile'
 import AddItem from './pages/AddItem'
 import Buying from './pages/Buying';
 import ShoePage from './pages/ShoePage';
+import Trading from './pages/Trading';
+import Sell from './pages/Sell';
+import Auction from './pages/Auction';
+import SellerStore from './pages/SellerStore';
+
 
 const App = () => {
   return (
@@ -33,6 +38,11 @@ const App = () => {
 
 
         <Route path="/Buying" element={<Buying/>}/>
+        <Route path="/Trading" element={<Trading/>}/>
+        <Route path="/Sell" element={<Sell/>}/>
+        <Route path="/Auction" element={<Auction/>}/>
+        <Route path="/SellerStore" element={<SellerStore/>}/>
+
         <Route path="/sneakers/:shoeId" element={<ShoePage/>}/>
       </Routes>
     </UserAuthContextProvider>

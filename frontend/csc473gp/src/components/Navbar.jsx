@@ -43,7 +43,7 @@ const Navbar = () => {
           <ul className="flex flex-col font-medium mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
             {user ? (
               <>
-                <li><Link to="/store"><a className="block py-2 pl-3 pr-4 text-gray-900 rounded hover-bg-gray-100 md:hover-bg-transparent md:border-0 md:hover-text-blue-700 md:p-0"><img width="30px" height="30px" src={store}></img></a></Link></li>
+                <li><Link to="/SellerStore"><a className="block py-2 pl-3 pr-4 text-gray-900 rounded hover-bg-gray-100 md:hover-bg-transparent md:border-0 md:hover-text-blue-700 md:p-0"><img width="30px" height="30px" src={store}></img></a></Link></li>
                 <li><Link to="/cart"><a className="block py-2 pl-3 pr-4 text-gray-900 rounded hover-bg-gray-100 md:hover-bg-transparent md:border-0 md:hover-text-blue-700 md:p-0"><img width="30px" height="30px" src={cart}></img></a></Link></li>
                 <li><Link to="/profile"><a className="block py-2 pl-3 pr-4 text-gray-900 rounded hover-bg-gray-100 md:hover-bg-transparent md:border-0 md:hover-text-blue-700 md:p-0"><img width="30px" height="30px" src={profile}></img></a></Link></li>
                 <li><a className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover-bg-transparent md:border-0 md:hover-text-blue-700 md:p-0"><button onClick={handleLogOut}>LogOut</button></a></li>
