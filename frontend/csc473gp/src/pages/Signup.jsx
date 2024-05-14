@@ -58,6 +58,11 @@ const Signup = () => {
             `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/create_profile`,
             {
               email: email,
+              cart: [],
+              transactions: [],
+              selling: [],
+              trading: [],
+              auctions: []
             },
             {
               headers: {

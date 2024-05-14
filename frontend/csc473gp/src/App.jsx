@@ -16,8 +16,9 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Profile from './pages/Profile'
 import AddItem from './pages/AddItem'
-import Buying from './pages/Buying';
-import ShoePage from './pages/ShoePage';
+import Buying from './pages/Buying'
+import ShoePage from './pages/ShoePage'
+import NotFound from './pages/NotFound'
 
 const App = () => {
   return (
@@ -34,6 +35,8 @@ const App = () => {
 
         <Route path="/Buying" element={<Buying/>}/>
         <Route path="/sneakers/:shoeId" element={<ShoePage/>}/>
+
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </UserAuthContextProvider>
   )
