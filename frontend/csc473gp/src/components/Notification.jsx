@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import close from '../assets/close.png'
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Notification = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null
 
   return (
@@ -16,4 +15,4 @@ const Modal = ({ isOpen, onClose, children }) => {
   )
 }
 
-export default Modal
+export default Notification

@@ -19,6 +19,9 @@ import AddItem from './pages/AddItem'
 import Buying from './pages/Buying'
 import ShoePage from './pages/ShoePage'
 import NotFound from './pages/NotFound'
+import Checkout from './pages/Checkout'
+
+import ProductList from './pages/ProductList'
 
 const App = () => {
   return (
@@ -32,6 +35,7 @@ const App = () => {
         <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
         <Route path="/add-item" element={<ProtectedRoute><AddItem/></ProtectedRoute>}/>
 
+        <Route path="/checkout" element={<ProtectedRoute><Checkout/></ProtectedRoute>}/>
 
         <Route path="/Buying" element={<Buying/>}/>
         <Route path="/sneakers/:shoeId" element={<ShoePage/>}/>

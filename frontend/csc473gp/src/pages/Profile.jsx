@@ -11,6 +11,14 @@ import cardimg from '../assets/card.png'
 import cog from '../assets/cog.png'
 import pic from '../assets/photo.png'
 import shoe from '../assets/shoe.png'
+import defaultpfp from '../assets/profile.png'
+
+import mailimg from '../assets/account/mail.png'
+import homeimg from '../assets/account/home.png'
+import phoneimg from '../assets/account/phone.png'
+import sizeimg from '../assets/account/size.png'
+import cardimgg from '../assets/account/card.png'
+import edit from '../assets/account/edit.png'
 
 import wallpaper from '../assets/wallpaper.jpg'
 
@@ -23,17 +31,17 @@ const Profile = () => {
   const { user } = useUserAuth()
   const [email, setEmail] = useState(user.email)
   // https://www.denofgeek.com/wp-content/uploads/2021/07/WebStory-The-Patrick-Star-Show-Patrick.jpeg
-  const [fname, setFName] = useState("")
-  const [lname, setLName] = useState("")
+  const [fname, setFName] = useState("First")
+  const [lname, setLName] = useState("Last")
   const [pfp, setPfp] = useState("")
   const [address, setAddress] = useState("")
   const [city, setCity] = useState("")
   const [state, setState] = useState("")
-  const [zipcode,setZipcode] = useState("")
-  const [phone, setPhone] = useState("")
-  const [gender, setGender] = useState("")
-  const [size, setSize] = useState("")
-  const [card, setCard] = useState("")
+  const [zipcode,setZipcode] = useState("00000")
+  const [phone, setPhone] = useState("###-###-####")
+  const [gender, setGender] = useState("M/F")
+  const [size, setSize] = useState("#")
+  const [card, setCard] = useState("##/## **##")
 
   const [error, setError] = useState("")
   let navigate = useNavigate()
@@ -44,10 +52,12 @@ const Profile = () => {
   const [isStoreModalOpen, setStoreModalOpen] = useState(false)
   const [isProfileModalOpen, setProfileModalOpen] = useState(false)
 
+  const [mm, setMM] = useState("")
+  const [yy, setYY] = useState("")
+  const [cardnumber, setCardNumber] = useState("")
+
   const updateProfile= async (e) => {
     e.preventDefault()
-
-    
     try {
       // Make an API call to create user profile
       const response = await axios.post(
@@ -63,6 +73,7 @@ const Profile = () => {
           gender: gender,
           size: size,
           pfp: pfp,
+          card: card,
         },
         {
           headers: {
@@ -71,7 +82,6 @@ const Profile = () => {
           },
         }
       )
-
       console.log("Profile Updated:", response.data)
     } catch (error) {
       setError("Error creating profile. Please try again.")
@@ -79,8 +89,36 @@ const Profile = () => {
     }
   }
 
+  const updateCardData= async (e) => {
+    e.preventDefault()
+
+    let lastfour = cardnumber.slice(-4)
+    let cardformat =  mm + "/" + yy + " *" + lastfour
+    console.log("card", cardformat)
+
+    try {
+      // Make an API call to create user profile
+      const response = await axios.post(
+        `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/update_profile`,
+        {
+          card: cardformat
+        },
+        {
+          headers: {
+            Authorization: `${email}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      console.log("Payment Updated:", response.data)
+    } catch (error) {
+      setError("Error creating profile. Please try again.")
+      console.error(error)
+    }
+  }
+
+
   const getProfileData = async () => {
-    
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/get_profile`, {
@@ -91,37 +129,39 @@ const Profile = () => {
         }
       )
   
-      
       console.log("Profile Data:", response.data)
-        setEmail(response.data.email || '')
-        setFName(response.data.first_name || '')
-        setLName(response.data.last_name || '')
-        setPfp(response.data.pfp || '')  // Make sure the key matches what the backend sends
-        setAddress(response.data.address || '')
-        setCity(response.data.city || '')
-        setState(response.data.state || '')
-        setZipcode(response.data.zipcode || '')  // Make sure the key matches what the backend sends
-        setPhone(response.data.phone || '')
-        setGender(response.data.gender || '')
-        setSize(response.data.size || '')
-        setCard(response.data.card || '')  // Assuming this exis
-      console.log("Account Data Loaded", response.data.first_name)
-
+      setEmail(response.data?.email || '')
+      setFName(response.data?.first_name || '')
+      setLName(response.data?.last_name || '')
+      setPfp(response.data?.pfp || '')  
+      setAddress(response.data?.address || '')
+      setCity(response.data?.city || '')
+      setState(response.data?.state || '')
+      setZipcode(response.data?.zipcode || '')  
+      setPhone(response.data?.phone || '')
+      setGender(response.data?.gender || '')
+      setSize(response.data?.size || '')
+      setCard(response.data?.card || '') 
+      console.log("Account Data Loaded", response.data?.first_name)
+  
     } catch (error) {
       setError("Error getting profile data. Please try again.")
+      setPfp(`${defaultpfp}`)
       console.error(error)
     }
-
   }
   
-
   useEffect(() => {
     getProfileData()
   }, [user])
   
+  
+  
+  
+
+  
   const fileInputRef = useRef()
 
-  // Function to simulate click on file input
   const openFileExplorer = () => {
     fileInputRef.current.click()
   }
@@ -174,10 +214,10 @@ const Profile = () => {
     style={{ backgroundImage: `url(${wallpaper})` }}>
     <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-4 gap-6 w-11/12 md:w-3/4 lg:w-3/4 xl:w-3/4 h-auto md:h-3/4">
       {/* Left Grid */}
-      <div className="col-span-1 md:col-span-1 row-span-4 bg-gray-200 p-5 md:p-20 rounded-lg shadow-2xl">
+      <div className="col-span-1 md:col-span-1 row-span-4 bg-opacity-95 bg-gray-200 p-5 md:p-20 rounded-lg shadow-2xl">
         <div className='flex flex-col items-center'>
           {/* profile pic */}
-          <div className="w-1/2 h-1/2 rounded-full overflow-hidden">
+          <div className="relative w-1/2 h-1/2 rounded-full overflow-hidden">
             <img src={pfp} className="object-cover"/>
           </div>
           {/* account info */}
@@ -186,43 +226,59 @@ const Profile = () => {
           </div>
 
         {/* Align headers on the left and content in the middle */}
-          <div className='text-md pt-5 space-y-3 w-full'>
-            <div className='flex justify-between'>
-              <span className='text-lg'>Email:</span>
-              <span>{email}</span>
+        <div className='relative text-md pt-5 w-full'>
+            <div className='relative mb-6 h-6'>
+              <div className='absolute left-0 flex items-center space-x-2'>
+                <img width='20px' src={mailimg}/>
+                <span className='text-lg'>Email:</span>
+              </div>
+              <span className='absolute right-0 text-lg'>{email}</span>
             </div>
 
-            <div className='flex justify-between'>
-              <span className='text-sm'>Address:</span>
-              <span>{address} {city} {state} {zipcode}</span>
+            <div className='relative mb-6 h-6'>
+              <div className='absolute left-0 flex items-center space-x-2'>
+                <img width='20px' src={homeimg}/>
+                <span className='text-lg'>Address:</span>
+              </div>
+              <span className='absolute right-0 text-lg'>{address} {city} {state} {zipcode}</span>
             </div>
 
-            <div className='flex justify-between'>
-              <span className='text-sm'>Phone Number:</span>
-              <span>{phone}</span>
+            <div className='relative mb-6 h-6'>
+              <div className='absolute left-0 flex items-center space-x-2'>
+                <img width='20px' src={phoneimg}/>
+                <span className='text-lg'>Phone Number:</span>
+              </div>
+              <span className='absolute right-0 text-lg'>{phone}</span>
             </div>
 
-            <div className='flex justify-between'>
-              <span className='text-sm'>Size:</span>
-              <span>{size} {gender}</span>
+            <div className='relative mb-6 h-6'>
+              <div className='absolute left-0 flex items-center space-x-2'>
+                <img width='20px' src={sizeimg}/>
+                <span className='text-lg'>Size:</span>
+              </div>
+              <span className='absolute right-0 text-lg'>{size} {gender}</span>
             </div>
 
-            <div className='flex justify-between'>
-              <span className='text-sm'>Saved Payment:</span>
-              <span>{card}</span>
+            <div className='relative mb-6 h-6'>
+              <div className='absolute left-0 flex items-center space-x-2'>
+                <img width='20px' src={cardimgg}/>
+                <span className='text-lg'>Card:</span>
+              </div>
+              <span className='absolute right-0 text-lg'>{card}</span>
             </div>
-        </div>
+          </div>
+
       </div>
     </div>
 
-    <div className="col-span-2 md:col-span-2 row-span-1 bg-gray-200 p-8 rounded-lg shadow-xl flex justify-around">
+    <div className="col-span-2 md:col-span-2 row-span-1 bg-opacity-95 bg-gray-200 p-8 rounded-lg shadow-xl flex justify-around">
       <button onClick={() => setAddItemModalOpen(true)}><img width="100px" height="30px" src={additem}/></button>
       <button onClick={() => setStoreModalOpen(true)}><img width="100px" height="30px" src={store}/></button>
       <button onClick={() => setProfileModalOpen(true)}><img width="100px" height="30px" src={cog}/></button>
     </div>
 
     {/* Right Grid Top */}
-    <div className="col-span-2 md:col-span-2 row-span-3 bg-gray-200 p-8 rounded-lg shadow-xl">
+    <div className="col-span-2 md:col-span-2 row-span-3 bg-opacity-95 bg-gray-200 p-8 rounded-lg shadow-xl">
       {/* Content here */}
     </div>
 
@@ -249,7 +305,7 @@ const Profile = () => {
       {/* Line 1 */}
       <div className='flex z-0 w-full mb-5 justify-start'>
         <img width="80px" className="rounded-full" src={pfp || profile} alt="Profile"/>
-        <span onClick={openFileExplorer} className='ml-5 my-auto'>Change Image</span>
+        <span onClick={openFileExplorer} className='ml-5 my-auto'><img width='30px' src={edit}/></span>
         <input
           type="file"
           ref={fileInputRef}
@@ -365,7 +421,7 @@ const Profile = () => {
   
     <hr className="w-48 mx-auto h-1 mt-7 bg-gray-200 border-0 dark:bg-gray-700"/>
     
-    <form className='mt-3'>
+    <form onSubmit={updateCardData} className='mt-3'>
 
       
 
@@ -391,9 +447,9 @@ const Profile = () => {
 
                 <div className="w-full">
                     <div className="flex my-1 p-2">
-                        <input type="text" id="card" required maxLength="16" className="w-5/6 border-t border-b border-l border-gray-300 flex-1 text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 rounded-l-lg focus:bg-white focus:outline-none" placeholder="Card Number"/>
-                        <input type="text" id="month" required maxLength="2" className="w-1/6 border-t border-b border-gray-300 inline-block text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 focus:bg-white focus:outline-none" placeholder="MM"/>
-                        <input type="text" id="year" required maxLength="2" className="w-1/6 border-t border-b border-gray-300 inline-block text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 focus:bg-white focus:outline-none" placeholder="YY"/>
+                        <input type="text" valuse={cardnumber} onChange={(e) => setCardNumber(e.target.value)} id="card" required minLength="16" maxLength="16" className="w-5/6 border-t border-b border-l border-gray-300 flex-1 text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 rounded-l-lg focus:bg-white focus:outline-none" placeholder="Card Number"/>
+                        <input type="text" valuse={mm} onChange={(e) => setMM(e.target.value)} id="month" required maxLength="2" className="w-1/6 border-t border-b border-gray-300 inline-block text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 focus:bg-white focus:outline-none" placeholder="MM"/>
+                        <input type="text" valuse={yy} onChange={(e) => setYY(e.target.value)} id="year" required maxLength="2" className="w-1/6 border-t border-b border-gray-300 inline-block text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 focus:bg-white focus:outline-none" placeholder="YY"/>
                         <input type="text" id="cvc" required maxLength="3" className="w-1/6 border-t border-b border-r border-gray-300 inline-block text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 focus:bg-white rounded-r-lg focus:outline-none" placeholder="CVC"/>
                     </div>
                 </div>
