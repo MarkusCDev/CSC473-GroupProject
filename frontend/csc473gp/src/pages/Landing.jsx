@@ -3,6 +3,7 @@ import ImageCarousel from '../components/Carousel'
 import Navigator from '../components/Navigator'
 import ProductSlider from '../components/ProductSlider'
 import SliderTitle from '../components/SliderTitle'
+import SwipeableProductCarousel from '../components/SwipeableProductCarousel'
 // TODO - carrousel slide show thing with log and etc
 
 const Landing = () => {
@@ -12,12 +13,23 @@ const Landing = () => {
         <Navigator />
       </div>
       <div className='w-full'>
-        <ImageCarousel/>
+        <ImageCarousel />
       </div>
-      <div className='max-w-screen-2xl mx-auto p-5 sm:p-10 md:p-16'>
-        <SliderTitle title='Trending' link='/Trending'/>
-        <ProductSlider />
+      {/* Separator */}
+      <div className='w-full h-14 bg-gray-200'></div>
+
+      <div className='max-w-screen-2xl mx-auto pt-2 p-5 sm:p-10 md:p-8'>
+        <SliderTitle title='deals buying' link='/Popular Selling' />
+        <SwipeableProductCarousel />
       </div>
+      
+      <div className='max-w-screen-2xl mx-auto pt-2 p-5 sm:p-10 md:p-8'>
+        <SliderTitle title='deals selling' link='/Popular Buying' />
+        <SwipeableProductCarousel /></div>
+      <div className='max-w-screen-2xl mx-auto pt-2 p-5 sm:p-10 md:p-8'>
+        <SliderTitle title='deals trading' link='/Popular Trading' />
+        <SwipeableProductCarousel /></div>
+
     </div>
   )
 }

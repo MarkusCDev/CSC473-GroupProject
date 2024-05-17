@@ -13,6 +13,7 @@ const products = [
 ];
 
 function ShoeDetail() {
+  
   const { id } = useParams();
   const product = products.find((p) => p.id === parseInt(id));
 
