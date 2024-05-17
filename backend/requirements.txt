@@ -3,3 +3,5 @@ flask_cors
 requests
 firebase_admin
 python-dotenv
+urllib3==1.26.14
+alpinejs

@@ -18,6 +18,7 @@ import Profile from './pages/Profile'
 import AddItem from './pages/AddItem'
 import Buying from './pages/Buying';
 import ShoePage from './pages/ShoePage';
+import ShoeDetailPage from './pages/ShoeDetailPage'
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
 
         <Route path="/Buying" element={<Buying/>}/>
         <Route path="/sneakers/:shoeId" element={<ShoePage/>}/>
+        <Route path="/shoe/:id" element={<ShoeDetailPage />} />
       </Routes>
     </UserAuthContextProvider>
   )
