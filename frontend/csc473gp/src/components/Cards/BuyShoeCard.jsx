@@ -1,10 +1,9 @@
-// BuyingShoeCard.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const BuyingShoeCard = ({ product }) => {
+const BuyShoeCard = ({ product }) => {
     return (
-        <Link to={`/shoe/${product.id}`} key={product.id} className="flex-none w-1/5 snap-center">
+        <Link to={`/shoe/${product.id}`} key={product.id} className="flex-none snap-center">
             <div className="bg-white border border-gray-200 rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 card">
                 <img src={product.imageUrl} alt={product.name} className="w-full h-40 object-cover" />
                 <div className="p-4">
@@ -20,4 +19,4 @@ const BuyingShoeCard = ({ product }) => {
     );
 };
 
-export default BuyingShoeCard;
+export default BuyShoeCard;

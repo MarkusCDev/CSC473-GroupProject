@@ -1,6 +1,5 @@
-// BuyShoesCarousel.jsx
 import React, { useRef, useEffect, useState } from 'react';
-import BuyingShoeCard from '../Cards/BuyShoeCard';
+import BuyShoeCard from '../Cards/BuyShoeCard';
 
 const products = [
     { id: 1, name: 'Product 1', originalPrice: '$20', discountedPrice: '$10', imageUrl: 'https://wallpapers.com/images/high/shoes-background-evoi6ni802pfz0ul.webp' },
@@ -27,11 +26,11 @@ function BuyShoesCarousel() {
     }, []);
 
     const scrollLeft = () => {
-        carouselRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        carouselRef.current.scrollBy({ left: -cardWidth * 5, behavior: 'smooth' });
     };
 
     const scrollRight = () => {
-        carouselRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        carouselRef.current.scrollBy({ left: cardWidth * 5, behavior: 'smooth' });
     };
 
     return (
@@ -54,7 +53,9 @@ function BuyShoesCarousel() {
                     }}
                 >
                     {products.map((product) => (
-                        <BuyingShoeCard key={product.id} product={product} />
+                        <div key={product.id} className="flex-none w-1/5">
+                            <BuyShoeCard product={product} />
+                        </div>
                     ))}
                 </div>
                 <div className="absolute inset-y-0 right-0 z-20 flex items-center">
