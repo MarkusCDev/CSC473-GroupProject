@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const products = [
@@ -14,18 +14,27 @@ const products = [
 
 function SwipeableProductCarousel() {
   const carouselRef = useRef(null);
+  const [cardWidth, setCardWidth] = useState(0);
+
+  useEffect(() => {
+    if (carouselRef.current) {
+      const cardElement = carouselRef.current.querySelector('.card');
+      if (cardElement) {
+        setCardWidth(cardElement.offsetWidth);
+      }
+    }
+  }, []);
 
   const scrollLeft = () => {
-    carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    carouselRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
   };
 
   const scrollRight = () => {
-    carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    carouselRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
   };
 
   return (
     <div className="">
-      
       <div className="relative flex items-center">
         <div className="absolute inset-y-0 left-0 z-20 flex items-center">
           <button
@@ -45,7 +54,7 @@ function SwipeableProductCarousel() {
         >
           {products.map((product) => (
             <Link to={`/shoe/${product.id}`} key={product.id} className="flex-none w-1/5 snap-center">
-              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 card">
                 <img src={product.imageUrl} alt={product.name} className="w-full h-40 object-cover" />
                 <div className="p-4">
                   <h3 className="text-lg leading-6 font-bold text-gray-900">{product.name}</h3>
