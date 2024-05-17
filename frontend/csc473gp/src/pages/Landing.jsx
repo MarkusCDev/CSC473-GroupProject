@@ -1,10 +1,12 @@
 import React from 'react'
-import ImageCarousel from '../components/Carousel'
+import FeaturedShoeCarousel from '../components/Carousel/FeaturedShoeCarousel'
 import Navigator from '../components/Navigator'
-import ProductSlider from '../components/ProductSlider'
 import SliderTitle from '../components/SliderTitle'
-import SwipeableProductCarousel from '../components/SwipeableProductCarousel'
-import TradeShoesCarousel from '../components/TradeShoesCarousel'
+
+
+
+import TradeShoesCarousel from '../components/Carousel/TradeShoesCarousel'
+import BuyShoesCarousel from '../components/Carousel/BuyShoesCarousel'
 // TODO - carrousel slide show thing with log and etc
 
 const Landing = () => {
@@ -14,17 +16,17 @@ const Landing = () => {
         <Navigator />
       </div>
       <div className='w-full'>
-        <ImageCarousel />
+        <FeaturedShoeCarousel />
       </div>
       {/* Separator */}
       <div className='w-full h-14 '></div>
 
       <div className='max-w-screen-2xl mx-auto pt-2 p-5 sm:p-10 md:p-8'>
-        <SliderTitle title='deals trading' link='/Popular Trading' />
+        <SliderTitle title='trading deals' link='/Popular Trading' />
         <TradeShoesCarousel /></div>
       <div className='max-w-screen-2xl mx-auto pt-2 p-5 sm:p-10 md:p-8'>
-        <SliderTitle title='deals buying' link='/Popular Selling' />
-        <SwipeableProductCarousel />
+        <SliderTitle title='Buying Deals' link='/Popular Selling' />
+        <BuyShoesCarousel />
       </div>
 
     </div>

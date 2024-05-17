@@ -1,7 +1,7 @@
 import React,{ useEffect } from 'react';
 import Navigator from '../components/Navigator';
-import ShoeDetail from '../components/ShoeDetail';
-import SwipeableProductCarousel from '../components/SwipeableProductCarousel';
+import ShoeDetail from '../components/Cards/ShoeDetail';
+import BuyShoesCarousel from '../components/Carousel/BuyShoesCarousel';
 import SliderTitle from '../components/SliderTitle';
 import { useParams, useLocation } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ const Landing = () => {
       </div>
       <div className='max-w-screen-2xl mx-auto p-5 sm:p-10 md:p-16'>
         <SliderTitle title='Related products' link="/featured"/>
-        <SwipeableProductCarousel />
+        <BuyShoesCarousel />
       </div>
     </div>
   );
