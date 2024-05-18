@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify
 from models.database_access import fetch_from_collection
 
-buying_blueprint = Blueprint('buying', __name__)
+data_retrieval = Blueprint('buying', __name__)
 
-@buying_blueprint.route('/fetch_data', methods=['POST'])
+@data_retrieval.route('/fetch_data', methods=['POST'])
 def get_data():
     '''
     Endpoint to fetch documents from a specified Firestore collection with optional filters.

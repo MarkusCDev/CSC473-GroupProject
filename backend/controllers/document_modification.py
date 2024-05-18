@@ -10,6 +10,8 @@ def modify_document():
     
     Expects a JSON body with at least 'collection', 'document_id', and the fields to be updated.
     
+    http://127.0.0.1:5000/document_modification/modify_document
+
     Example JSON Body:
     {
         "collection": "Sneakers",

@@ -20,6 +20,8 @@ import Buying from './pages/Buying';
 import ShoePage from './pages/ShoePage';
 import ShoeDetailPage from './pages/ShoeDetailPage'
 import Trading from './pages/Trading'
+import CreateBuying from './pages/CreateBuying'
+import CreateTrading from './pages/CreateTrading'
 
 const App = () => {
   return (
@@ -36,6 +38,9 @@ const App = () => {
 
         <Route path="/Buying" element={<Buying/>}/>
         <Route path="/Trading" element={<Trading/>}/>
+        <Route path="/CreateBuying" element={<CreateBuying/>}/>
+        <Route path="/CreateTrading" element={<CreateTrading/>}/>
+
         
         <Route path="/sneakers/:shoeId" element={<ShoePage/>}/>
         <Route path="/shoe/:id" element={<ShoeDetailPage />} />

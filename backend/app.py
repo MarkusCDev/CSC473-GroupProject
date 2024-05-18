@@ -1,5 +1,5 @@
 from flask import Flask
-from controllers.data_fetch import buying_blueprint
+from controllers.data_fetch import data_retrieval
 from controllers.document_creation import document_creation_blueprint
 from controllers.document_modification import document_modification_blueprint
 from controllers.document_deletion import document_deletion_blueprint
@@ -18,7 +18,7 @@ CORS(app)
 cred = credentials.Certificate('./auth.json')
 
 firebase_admin.initialize_app(cred)
-app.register_blueprint(buying_blueprint, url_prefix='/buying')
+app.register_blueprint(data_retrieval, url_prefix='/data_retrieval')
 app.register_blueprint(document_creation_blueprint, url_prefix='/document_creation')
 app.register_blueprint(document_modification_blueprint, url_prefix='/document_modification')
 app.register_blueprint(document_deletion_blueprint, url_prefix='/document_deletion')
