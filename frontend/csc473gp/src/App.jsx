@@ -19,6 +19,7 @@ import AddItem from './pages/AddItem'
 import Buying from './pages/Buying';
 import ShoePage from './pages/ShoePage';
 import ShoeDetailPage from './pages/ShoeDetailPage'
+import Trading from './pages/Trading'
 
 const App = () => {
   return (
@@ -34,6 +35,8 @@ const App = () => {
 
 
         <Route path="/Buying" element={<Buying/>}/>
+        <Route path="/Trading" element={<Trading/>}/>
+        
         <Route path="/sneakers/:shoeId" element={<ShoePage/>}/>
         <Route path="/shoe/:id" element={<ShoeDetailPage />} />
       </Routes>

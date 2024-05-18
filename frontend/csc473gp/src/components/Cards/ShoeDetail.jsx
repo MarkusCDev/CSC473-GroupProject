@@ -2,12 +2,12 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 const products = [
-  { id: 1, name: 'Product 1', price: '$10', imageUrl: 'https://wallpapers.com/images/high/shoes-background-evoi6ni802pfz0ul.webp', description: 'High Top (Lemon Yellow)' },
-  { id: 2, name: 'Product 2', price: '$20', imageUrl: 'https://i.ebayimg.com/images/g/LA8AAOSwvWtmHuEQ/s-l1600.jpg', description: 'High Top (Red)' },
-  { id: 3, name: 'Product 3', price: '$15', imageUrl: 'https://i.ebayimg.com/images/g/-DwAAOSwkt9mHvC6/s-l1600.jpg', description: 'High Top (Blue)' },
-  { id: 4, name: 'Product 4', price: '$25', imageUrl: 'https://i.ebayimg.com/images/g/GRUAAOSwPBlmHrbQ/s-l1600.jpg', description: 'High Top (Green)' },
-  { id: 5, name: 'Product 5', price: '$30', imageUrl: 'https://i.ebayimg.com/images/g/KKkAAOSwujBmHt-s/s-l1600.jpg', description: 'High Top (Black)' },
-  { id: 6, name: 'Product 6', price: '$35', imageUrl: 'https://i.ebayimg.com/images/g/5OUAAOSwgwxmHvB7/s-l1600.jpg', description: 'High Top (White)' },
+  { id: 101, name: 'Product 1', price: '$10', imageUrl: 'https://wallpapers.com/images/high/shoes-background-evoi6ni802pfz0ul.webp', description: 'High Top (Lemon Yellow)' },
+  { id: 201, name: 'Product 2', price: '$20', imageUrl: 'https://i.ebayimg.com/images/g/LA8AAOSwvWtmHuEQ/s-l1600.jpg', description: 'High Top (Red)' },
+  { id: 202, name: 'Product 3', price: '$15', imageUrl: 'https://i.ebayimg.com/images/g/-DwAAOSwkt9mHvC6/s-l1600.jpg', description: 'High Top (Blue)' },
+  { id: 301, name: 'Product 4', price: '$25', imageUrl: 'https://i.ebayimg.com/images/g/GRUAAOSwPBlmHrbQ/s-l1600.jpg', description: 'High Top (Green)' },
+  { id: 302, name: 'Product 5', price: '$30', imageUrl: 'https://i.ebayimg.com/images/g/KKkAAOSwujBmHt-s/s-l1600.jpg', description: 'High Top (Black)' },
+  { id: 401, name: 'Product 6', price: '$35', imageUrl: 'https://i.ebayimg.com/images/g/5OUAAOSwgwxmHvB7/s-l1600.jpg', description: 'High Top (White)' },
   { id: 7, name: 'Product 7', price: '$40', imageUrl: 'https://s.yimg.com/ny/api/res/1.2/2wNOJ0NLfk6DStVKy4V6qQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTkxMw--/https://s.yimg.com/os/creatr-uploaded-images/2023-12/29fb7210-9834-11ee-bfff-9c23faf735c5', description: 'High Top (Gray)' },
   { id: 8, name: 'Product 8', price: '$45', imageUrl: 'https://i.pinimg.com/736x/09/10/87/091087a1fad6dec229eb2ebf8e41a431.jpg', description: 'High Top (Pink)' },
 ];
