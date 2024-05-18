@@ -19,7 +19,6 @@ import AddItem from './pages/AddItem'
 import Buying from './pages/Buying';
 import ShoeDetailPage from './pages/ShoeDetailPage'
 import Trading from './pages/Trading'
-import Buying from './pages/Buying'
 import ShoePage from './pages/ShoePage'
 import NotFound from './pages/NotFound'
 import Checkout from './pages/Checkout'
