@@ -59,3 +59,18 @@ def update_document(collection_name, document_id, update_data):
     db = get_firestore_client()
     document_ref = db.collection(collection_name).document(document_id)
     document_ref.update(update_data)
+
+def delete_document(collection_name, document_id):
+    """
+    Delete a document from a specified Firestore collection.
+    
+    Args:
+        collection_name (str): The name of the Firestore collection.
+        document_id (str): The ID of the document to be deleted.
+    
+    Returns:
+        None
+    """
+    db = get_firestore_client()
+    document_ref = db.collection(collection_name).document(document_id)
+    document_ref.delete()
