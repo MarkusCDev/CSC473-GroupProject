@@ -3,3 +3,4 @@ flask_cors
 requests
 firebase_admin
 python-dotenv
+openai
