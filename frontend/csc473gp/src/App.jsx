@@ -29,7 +29,6 @@ import ShoeDetailPage from './pages/ShoeDetailPage'
 import Trading from './pages/Trading'
 import ShoePage from './pages/ShoePage'
 import NotFound from './pages/NotFound'
-import Checkout from './pages/Checkout'
 import ChatAssistant from './components/ChatAssistant'
 
 import ProductList from './pages/ProductList'
