@@ -4,3 +4,6 @@ requests
 firebase_admin
 python-dotenv
 openai
+urllib3==1.26.14
+alpinejs
+

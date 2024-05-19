@@ -10,8 +10,8 @@ import store from '../assets/store.png'
 import bell from '../assets/bell.png'
 import CartModal from '../components/Cart'
 
-const Navbar = () => {
 
+const Navbar = () => {
   const { user, logOut } = useUserAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCartModalOpen, setCartModalOpen] = useState(false)
@@ -20,10 +20,11 @@ const Navbar = () => {
   const handleLogOut = async () => {
     try {
       await logOut();
-      console.log(user?.email, "Successfully logged out!");
+      console.log(user?.email, 'Successfully logged out!');
     } catch (e) {
-      console.log("Could not log out: ", e);
-    }}
+      console.log('Could not log out: ', e);
+    }
+  };
 
   return (
     <>
@@ -31,7 +32,7 @@ const Navbar = () => {
 
     <nav className="">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img src={logo} className="h-10 mr-3" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap">
             SoleSphere
@@ -84,3 +85,4 @@ const Navbar = () => {
 }
 
 export default Navbar
+
