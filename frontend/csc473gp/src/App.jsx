@@ -18,11 +18,22 @@ import Profile from './pages/Profile'
 import Checkout from './pages/Checkout'
 import AddItem from './pages/AddItem'
 import Buying from './pages/Buying';
+
 import BuyShoeDetailPage from './pages/BuyShoeDetailPage'
 import TradeShoeDetailPage from './pages/TradeShoeDetailPage'
-import Trading from './pages/Trading'
+
 import CreateBuying from './pages/CreateBuying'
 import CreateTrading from './pages/CreateTrading'
+
+import ShoeDetailPage from './pages/ShoeDetailPage'
+import Trading from './pages/Trading'
+import ShoePage from './pages/ShoePage'
+import NotFound from './pages/NotFound'
+import Checkout from './pages/Checkout'
+import ChatAssistant from './components/ChatAssistant'
+
+import ProductList from './pages/ProductList'
+
 
 
 const App = () => {
@@ -39,6 +50,7 @@ const App = () => {
 
         <Route path="/checkout" element={<ProtectedRoute><Checkout/></ProtectedRoute>}/>
 
+        <Route path="/checkout" element={<ProtectedRoute><Checkout/></ProtectedRoute>}/>
 
         <Route exact path="/Buying" element={<Buying/>}/>
         <Route exact path="/Trading" element={<Trading/>}/>
@@ -46,10 +58,19 @@ const App = () => {
         <Route exact path="/CreateTrading" element={<CreateTrading/>}/>
 
         
+
         <Route exact path="/shoe/:id" element={<BuyShoeDetailPage />} />
         <Route exact path="/trade-shoe/:id" element={<TradeShoeDetailPage />} />
 
+        <Route path="/sneakers/:shoeId" element={<ShoePage/>}/>
+
+        <Route path="/shoe/:id" element={<ShoeDetailPage />} />
+
+
+        <Route path="*" element={<NotFound/>}/>
+
       </Routes>
+      <ChatAssistant />
     </UserAuthContextProvider>
   )
 }

@@ -2,12 +2,15 @@ import React, {useState} from 'react'
 import { useUserAuth } from '../components/UserAuthentication'
 import { useNavigate, Link } from "react-router-dom"
 import logo from '../assets/logo.png'
+import wallpaper from '../assets/wallpaper.jpg'
+import google from '../assets/google.png'
+import axios from 'axios'
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
-    const {logIn} = useUserAuth()
+    const {logIn, signInWithGoogle, user} = useUserAuth()
     const [showPassword, setShowPassword] = useState(false)
     const [error, setError] = useState("")
 
@@ -21,12 +24,21 @@ const Login = () => {
             console.log(err);
           }
       };
-    
-  return (
-    <div className='flex min-h-screen bg-gradient-to-b from-stone-300 to-stone-500 items-center justify-center px-4 mt-2 sm:px-6 lg:px-8;'>
-      <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl m-auto bg-white rounded-lg p-5">
+  
+    const handleGoogleSignIn = async () => {
+      try {
+        await signInWithGoogle()
+        navigate("/")
+        } catch (error) {
+        setError(error.message)
+        console.log(error)
+      }}
       
-      <p className='text-center text-xl font-bold'><h1>Log In</h1></p>
+  return (
+    <div className='flex min-h-screen bg-gradient-to-b from-stone-300 to-stone-500 items-center justify-center px-4 mt-2 sm:px-6 lg:px-8 bg-center bg-no-repeat bg-cover' style={{ backgroundImage: `url(${wallpaper})` }}>
+      <div className= "bg-opacity-75 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl m-auto bg-black rounded-lg p-5">
+      
+      <p className='text-center text-xl text-white font-bold'>Login</p>
         
         {/* Login Form */}
         <form onSubmit={handleSubmit}>
@@ -35,7 +47,7 @@ const Login = () => {
 
           {/* Email Input */}
           <div>
-            <label className="block mb-2" htmlFor="username">
+            <label className="block mb-2 text-white" htmlFor="username">
               Username/Email
             </label>
             <input
@@ -50,7 +62,7 @@ const Login = () => {
 
           {/* Password Input */}
           <div>
-            <label className="block mb-2" htmlFor="password">
+            <label className="block mb-2 text-white" htmlFor="password">
               Password
             </label>
             <div className="relative">
@@ -91,13 +103,19 @@ const Login = () => {
           </div>
 
           {/* Submit Button */}
-          <button className="w-full bg-blue-700 hover:bg-green-700 text-white font-bold py-2 px-4 mb-6 rounded transition-colors duration-300"type="submit">Login</button>
+          <div className='flex justify-center'>
+            <button className="transition ease-in-out delay-150 hover:scale-105 duration-300 w-full rounded-full bg-blue-700 hover:bg-green-700 text-white font-bold py-2 px-4 mb-6 rounded transition-colors duration-300" type="submit">Login</button>
+          </div>
         </form>
+          <div className='flex justify-center'>
+            <button className="transition ease-in-out delay-150 hover:scale-110 duration-300 w-1/2 rounded-full bg-blue-700 hover:bg-green-700 text-white font-bold py-2 px-4 mb-6 rounded transition-colors duration-300" onClick={handleGoogleSignIn}><div className='flex justify-center'><img width='30px' height='5px' src={google}/></div></button>
+          </div>
+
 
         {/* Additional Links */}
         <div className="flex justify-between">
-          <Link className="text-blue-700 hover:text-purple-700 text-sm" to="/reset">Forgot Password?</Link>
-          <Link className="text-blue-700 hover:text-purple-700 text-sm" to="/signup">New? Create an account</Link>
+          <Link className="hover:scale-110 text-red-500 hover:text-green-500 text-sm" to="/reset">Forgot Password?</Link>
+          <Link className="hover:scale-110 text-red-500 hover:text-green-500 text-sm" to="/signup">New? Create an account</Link>
         </div>
       </div>
   </div>
