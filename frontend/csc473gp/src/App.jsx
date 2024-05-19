@@ -15,14 +15,15 @@ import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Profile from './pages/Profile'
+import Checkout from './pages/Checkout'
 import AddItem from './pages/AddItem'
 import Buying from './pages/Buying';
-import ShoePage from './pages/ShoePage';
 import BuyShoeDetailPage from './pages/BuyShoeDetailPage'
 import TradeShoeDetailPage from './pages/TradeShoeDetailPage'
 import Trading from './pages/Trading'
 import CreateBuying from './pages/CreateBuying'
 import CreateTrading from './pages/CreateTrading'
+
 
 const App = () => {
   return (
@@ -35,6 +36,8 @@ const App = () => {
 
         <Route exact path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
         <Route exact path="/add-item" element={<ProtectedRoute><AddItem/></ProtectedRoute>}/>
+
+        <Route path="/checkout" element={<ProtectedRoute><Checkout/></ProtectedRoute>}/>
 
 
         <Route exact path="/Buying" element={<Buying/>}/>

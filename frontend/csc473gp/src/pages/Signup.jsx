@@ -5,6 +5,8 @@ import { setDoc, doc } from 'firebase/firestore'
 import { db } from '../firebase'
 import logo from '../assets/logo.png'
 import axios from "axios"
+import wallpaper from '../assets/wallpaper.jpg'
+
 
 
 const Signup = () => {
@@ -58,6 +60,11 @@ const Signup = () => {
             `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/create_profile`,
             {
               email: email,
+              cart: [],
+              transactions: [],
+              selling: [],
+              trading: [],
+              auctions: []
             },
             {
               headers: {
@@ -97,10 +104,10 @@ const Signup = () => {
     
 
   return (
-    <div className='flex min-h-screen bg-gradient-to-b from-stone-300 to-stone-500 items-center justify-center px-4 mt-2 sm:px-6 lg:px-8'>
-      <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl m-auto bg-white rounded-lg p-5">
+    <div className='flex min-h-screen bg-gradient-to-b from-stone-300 to-stone-500 items-center justify-center px-4 mt-2 sm:px-6 lg:px-8  bg-center bg-no-repeat bg-cover' style={{ backgroundImage: `url(${wallpaper})` }}>
+      <div className="bg-opacity-75 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl m-auto bg-black rounded-lg p-5">
 
-        <p className='text-center font-bold text-xl'><h1>Sign Up</h1></p>
+        <p className='text-center text-white font-bold text-xl'>Sign Up</p>
         {/* SignUp Form */}
         <form onSubmit={handleSubmit}>
           {/* Error Message */}
@@ -108,7 +115,7 @@ const Signup = () => {
 
           {/* Username Input */}
           <div>
-            <label className="block mb-2" htmlFor="username">
+            <label className="block mb-2 text-white" htmlFor="username">
               Username/Email
             </label>
             <input
@@ -123,7 +130,7 @@ const Signup = () => {
 
           {/* Password Input */}
           <div>
-            <label className="block mb-2" htmlFor="password">
+            <label className="block mb-2 text-white" htmlFor="password">
               Password
             </label>
             <div className="relative">
@@ -166,7 +173,7 @@ const Signup = () => {
           {/* Confirm Password Input */}
           <div>
             <label
-              className="block mb-2"
+              className="block mb-2 text-white"
               htmlFor="confirmPassword"
             >
               Confirm Password
@@ -213,12 +220,12 @@ const Signup = () => {
           )}
 
           {/* SignUp Button */}
-          <button className="w-full bg-blue-700 hover:bg-green-700 text-white font-bold py-2 px-4 mb-6 rounded transition-colors duration-300" type="submit">Sign up</button>
+          <button className="transition ease-in-out delay-150 hover:scale-105 duration-300 w-full rounded-full bg-blue-700 hover:bg-green-700 text-white font-bold py-2 px-4 mb-6 rounded transition-colors duration-300" type="submit">Sign up</button>
         </form>
 
         {/* Login Link */}
-        <div className="text-center">
-            <Link className="text-blue-700 hover:text-purple-700 text-sm" to="/login">Already have an Account? Login</Link>
+        <div className="flex justify-center text-center">
+        <Link className="hover:scale-110 text-red-500 hover:text-green-500 text-sm" to="/login">Already Have an Account? Login</Link>
         </div>
       </div>
     </div>

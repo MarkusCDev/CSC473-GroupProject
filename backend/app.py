@@ -4,6 +4,9 @@ from controllers.document_fetch import document_retrieval
 from controllers.document_creation import document_creation_blueprint
 from controllers.document_modification import document_modification_blueprint
 from controllers.document_deletion import document_deletion_blueprint
+from controllers.checkout import checkout_blueprint
+from controllers.profile import profile_blueprint
+
 
 import firebase_admin
 from firebase_admin import credentials
@@ -25,6 +28,9 @@ app.register_blueprint(document_creation_blueprint, url_prefix='/document_creati
 app.register_blueprint(document_modification_blueprint, url_prefix='/document_modification')
 app.register_blueprint(document_deletion_blueprint, url_prefix='/document_deletion')
 
+app.register_blueprint(checkout_blueprint, url_prefix='/checkout')
+app.register_blueprint(profile_blueprint, url_prefix='/profile')
+#app.register_blueprint(homepage_blueprint, url_prefix='/')
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))

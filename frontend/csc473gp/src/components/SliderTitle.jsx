@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 const SliderTitle = ({ title, link }) => {
   return (
     <div className="border-b mb-5 flex justify-between text-sm">
       <div className="text-indigo-600 flex items-center pb-2 pr-2 border-b-2 border-indigo-600 uppercase">
-        <svg
+      <svg
           className="h-6 mr-3"
           version="1.1"
           id="Capa_1"
@@ -31,9 +30,9 @@ const SliderTitle = ({ title, link }) => {
         <span className="font-semibold inline-block">{title}</span>
       </div>
       {link && (
-        <Link to={link} className="text-indigo-600">
+        <a href={link} className="text-indigo-600">
           See All
-        </Link>
+        </a>
       )}
     </div>
   );
