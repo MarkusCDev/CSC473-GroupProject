@@ -22,10 +22,10 @@ const Landing = () => {
       <div className='w-full h-14 '></div>
 
       <div className='max-w-screen-2xl mx-auto pt-2 p-5 sm:p-10 md:p-8'>
-        <SliderTitle title='trading deals' link='/Popular Trading' />
+        <SliderTitle title='trading deals' link='/Trading' />
         <TradeShoesCarousel /></div>
       <div className='max-w-screen-2xl mx-auto pt-2 p-5 sm:p-10 md:p-8'>
-        <SliderTitle title='Buying Deals' link='/Popular Selling' />
+        <SliderTitle title='Buying Deals' link='/Buying' />
         <BuyShoesCarousel />
       </div>
 

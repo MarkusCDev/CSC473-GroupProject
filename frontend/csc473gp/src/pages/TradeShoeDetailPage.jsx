@@ -1,7 +1,8 @@
 import React,{ useEffect } from 'react';
 import Navigator from '../components/Navigator';
-import ShoeDetail from '../components/Cards/ShoeDetail';
-import BuyShoesCarousel from '../components/Carousel/BuyShoesCarousel';
+
+import TradeShoeDetail from '../components/Cards/TradeShoeDetail';
+import TradeShoesCarousel from '../components/Carousel/TradeShoesCarousel';
 import SliderTitle from '../components/SliderTitle';
 import { useParams, useLocation } from 'react-router-dom';
 
@@ -23,11 +24,11 @@ const Landing = () => {
         <Navigator />
       </div>
       <div className='w-full mt-8'> {/* Added margin-top here */}
-        <ShoeDetail />
+        <TradeShoeDetail />
       </div>
       <div className='max-w-screen-2xl mx-auto p-5 sm:p-10 md:p-16'>
         <SliderTitle title='Related products' link="/featured"/>
-        <BuyShoesCarousel />
+        <TradeShoesCarousel />
       </div>
     </div>
   );

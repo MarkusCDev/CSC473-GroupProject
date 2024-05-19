@@ -22,14 +22,14 @@ const renderShoesGrid = (shoes) => {
 };
 
 const TradeShoeCard = ({ product }) => {
-    if (!product || !product.shoe) {
+    if (!product) {
         return <div>Product not found</div>;
     }
 
-    const { owner, trading, askedForTrade, shoe } = product;
+    const { id, owner, trading, askedForTrade } = product;
 
     return (
-        <Link to={`/product/${shoe.id}`} className="flex-none w-full px-2 mb-6 card">
+        <Link to={`/trade-shoe/${id}`} className="flex-none w-full px-2 mb-6 card">
             <div className="border border-gray-300 rounded-2xl p-4">
                 <h2 className="text-2xl font-bold mb-4">{owner}</h2>
                 <div className="flex justify-between items-center mb-4">

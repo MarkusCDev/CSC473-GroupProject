@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
-from models.database_access import fetch_from_collection
+from models.database_access import fetch_from_collection, fetch_document_by_id
 
-data_retrieval = Blueprint('buying', __name__)
+data_retrieval = Blueprint('fetch_data', __name__)
 
 @data_retrieval.route('/fetch_data', methods=['POST'])
 def get_data():
@@ -11,7 +11,7 @@ def get_data():
     Expects a JSON body with at least a 'collection' key indicating the collection name.
     All other keys in the JSON body are treated as filters to apply when fetching the documents.
     
-    http://127.0.0.1:5000/buying/fetch_data
+    http://127.0.0.1:5000/data_retrieval/fetch_data
 
     Example JSON Body:
     {
@@ -43,3 +43,5 @@ def get_data():
         return jsonify({"data": fetched_data})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+

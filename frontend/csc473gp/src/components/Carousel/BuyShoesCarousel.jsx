@@ -80,7 +80,7 @@ function BuyShoesCarousel() {
                 >
                     {products.flatMap(product =>
                         product.selling.map((shoe, index) => (
-                            <div key={`${product.owner}-${shoe.name}-${index}`} className="flex-none">
+                            <div key={`${product.id}-${index}`} className="flex-none">
                                 <BuyShoeCard product={product} shoe={shoe} />
                             </div>
                         ))

@@ -13,7 +13,7 @@ const Navigator = () => {
             className="p-1 rounded-lg text-black text-center"
           />
         </div>
-        <a href="CreateTrading" className="hover:text-gray-300">Auction</a>
+        <a href="/CreateTrading" className="hover:text-gray-300">Auction</a>
         <a href="/Trading" className="hover:text-gray-300">Trade</a>
       </div>
     </div>

@@ -18,7 +18,8 @@ import Profile from './pages/Profile'
 import AddItem from './pages/AddItem'
 import Buying from './pages/Buying';
 import ShoePage from './pages/ShoePage';
-import ShoeDetailPage from './pages/ShoeDetailPage'
+import BuyShoeDetailPage from './pages/BuyShoeDetailPage'
+import TradeShoeDetailPage from './pages/TradeShoeDetailPage'
 import Trading from './pages/Trading'
 import CreateBuying from './pages/CreateBuying'
 import CreateTrading from './pages/CreateTrading'
@@ -28,22 +29,23 @@ const App = () => {
     <UserAuthContextProvider>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Landing/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/signup" element={<Signup/>}/>
+        <Route exact path="/" element={<Landing/>}/>
+        <Route exact path="/login" element={<Login/>}/>
+        <Route exact path="/signup" element={<Signup/>}/>
 
-        <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
-        <Route path="/add-item" element={<ProtectedRoute><AddItem/></ProtectedRoute>}/>
+        <Route exact path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
+        <Route exact path="/add-item" element={<ProtectedRoute><AddItem/></ProtectedRoute>}/>
 
 
-        <Route path="/Buying" element={<Buying/>}/>
-        <Route path="/Trading" element={<Trading/>}/>
-        <Route path="/CreateBuying" element={<CreateBuying/>}/>
-        <Route path="/CreateTrading" element={<CreateTrading/>}/>
+        <Route exact path="/Buying" element={<Buying/>}/>
+        <Route exact path="/Trading" element={<Trading/>}/>
+        <Route exact path="/CreateBuying" element={<CreateBuying/>}/>
+        <Route exact path="/CreateTrading" element={<CreateTrading/>}/>
 
         
-        <Route path="/sneakers/:shoeId" element={<ShoePage/>}/>
-        <Route path="/shoe/:id" element={<ShoeDetailPage />} />
+        <Route exact path="/shoe/:id" element={<BuyShoeDetailPage />} />
+        <Route exact path="/trade-shoe/:id" element={<TradeShoeDetailPage />} />
+
       </Routes>
     </UserAuthContextProvider>
   )

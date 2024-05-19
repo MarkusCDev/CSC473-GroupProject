@@ -12,11 +12,6 @@ function CreateBuying() {
         setErrorMessage('');
         setSuccessMessage('');
 
-        if (shoes.length >= 2) {
-            setErrorMessage('You can add a maximum of 2 shoes.');
-            return;
-        }
-
         const newShoe = {
             name: '',
             originalPrice: '',
@@ -53,24 +48,30 @@ function CreateBuying() {
             return;
         }
 
-        const tradingShoesDocument = {
-            collection: "Buying Shoes",
-            owner: owner,
-            selling: shoes
-        };
+        const promises = shoes.map(shoe => {
+            const tradingShoesDocument = {
+                collection: "Buying Shoes",
+                owner: owner,
+                selling: [shoe]
+            };
 
-        try {
-            const response = await fetch('http://127.0.0.1:5000/document_creation/create_document', {
+            return fetch('http://127.0.0.1:5000/document_creation/create_document', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(tradingShoesDocument),
             });
+        });
 
-            if (!response.ok) {
-                const result = await response.json();
-                setErrorMessage(result.error || 'There was a problem creating the Trading Shoes document.');
+        try {
+            const responses = await Promise.all(promises);
+
+            const allResponsesOk = responses.every(response => response.ok);
+            if (!allResponsesOk) {
+                const errorMessages = await Promise.all(responses.map(response => response.json().catch(() => null)));
+                const firstErrorMessage = errorMessages.find(result => result && result.error)?.error || 'There was a problem creating the Trading Shoes documents.';
+                setErrorMessage(firstErrorMessage);
                 return;
             }
 
@@ -78,7 +79,7 @@ function CreateBuying() {
             setShoes([]);
             setSuccessMessage('Shoes added successfully!');
         } catch (error) {
-            setErrorMessage('There was a problem creating the document.');
+            setErrorMessage('There was a problem creating the documents.');
         }
     };
 
