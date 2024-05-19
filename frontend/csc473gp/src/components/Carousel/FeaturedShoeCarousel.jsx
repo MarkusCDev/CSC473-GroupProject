@@ -6,7 +6,7 @@ const images = [
     "https://graphicsfamily.com/wp-content/uploads/edd/2021/07/Professional-E-Commerce-Shoes-Banner-Design-1180x664.jpg"
 ];
 
-function ImageCarousel() {
+function FeaturedShoeCarousel() {
     const [current, setCurrent] = useState(0)
     
     useEffect(() => {
@@ -34,4 +34,4 @@ function ImageCarousel() {
     )
 }
 
-export default ImageCarousel
+export default FeaturedShoeCarousel
