@@ -52,10 +52,10 @@ const Navbar = () => {
             {user ? (
               <>
                 <li className="relative group">
-                  <button id="dropdownDelayButton" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0" type="button">
+                <button id="dropdownDelayButton" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0" type="button" onMouseEnter={() => setNotificationDropdownOpen(true)} onMouseLeave={() => setNotificationDropdownOpen(false)}>
                     <img width="30px" height="30px" src={bell} />
                   </button>
-                  <div id="dropdownDelay" className="z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ left: '-75px', top: '40px' }}>
+                  <div id="dropdownDelay" className={`z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ${isNotificationDropdownOpen ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`} style={{ left: '-75px', top: '40px' }}>
                     <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDelayButton">
                       <li>
                         <div className='flex justify-between'>
