@@ -25,7 +25,6 @@ import TradeShoeDetailPage from './pages/TradeShoeDetailPage'
 import CreateBuying from './pages/CreateBuying'
 import CreateTrading from './pages/CreateTrading'
 
-import ShoeDetailPage from './pages/ShoeDetailPage'
 import Trading from './pages/Trading'
 import ShoePage from './pages/ShoePage'
 import NotFound from './pages/NotFound'
@@ -58,7 +57,6 @@ const App = () => {
 
         
 
-        <Route exact path="/shoe/:id" element={<BuyShoeDetailPage />} />
         <Route exact path="/trade-shoe/:id" element={<TradeShoeDetailPage />} />
 
         <Route path="/sneakers/:shoeId" element={<ShoePage/>}/>
