@@ -46,7 +46,7 @@ website without having to bounce back and forth.
     <a href="https://github.com/MarkusCDev/CSC473-GroupProject"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/MarkusCDev/CSC473-GroupProject">View Demo</a>
+    <a href="https://csc473-ff414.web.app/">View Demo</a>
     ·
     <a href="https://github.com/MarkusCDev/CSC473-GroupProject/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
@@ -291,10 +291,6 @@ Project Link: [https://github.com/MarkusCDev/CSC473-GroupProject](https://github
 
 - **Mentors and Advisors**:
   - Donato Cruz - For guidance and support throughout the project.
-
-- **Special Thanks**:
-  - [Person's Name] - For providing valuable feedback and testing.
-  - [Person's Name] - For design and UX consultation.
 
 - **Resources**:
   - [React Documentation](https://reactjs.org/docs/getting-started.html) - For comprehensive React documentation.
