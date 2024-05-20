@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import FeaturedShoeCarousel from '../components/Carousel/FeaturedShoeCarousel';
 import TradeShoeCard from '../components/Cards/TradeShoeCard';
 import Navigator from '../components/Navigator';
+import Banner from '../components/Banner'
+import Bannerimg from '../assets/trade.png'
 
 const Trading = () => {
     const [products, setProducts] = useState([]);
@@ -45,7 +47,7 @@ const Trading = () => {
     return (
         <div>
             <Navigator />
-            <FeaturedShoeCarousel />
+            <Banner img={Bannerimg}/>
             <div className='max-w-screen-2xl mx-auto pt-2 p-5 sm:p-10 md:p-8'>
                 <div className="flex flex-wrap scrollbar-hide w-full" style={{
                     scrollbarWidth: 'none',

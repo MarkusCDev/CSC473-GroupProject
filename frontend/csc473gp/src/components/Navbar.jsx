@@ -61,7 +61,7 @@ const Navbar = () => {
                       <li>
                         <div className='flex justify-between'>
                           <a>Your <b>Jordan 1</b> was Sold!</a>
-                          <a className='ml-6'><img width='15px' src={bell}/></a>
+                          <a className=''><img width='15px' src={bell}/></a>
                         </div>
                       </li>
                     </ul>

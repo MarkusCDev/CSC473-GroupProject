@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import FeaturedShoeCarousel from '../components/Carousel/FeaturedShoeCarousel';
 import BuyShoeCard from '../components/Cards/BuyShoeCard';
 import Navigator from '../components/Navigator';
+import Banner from '../components/Banner'
+import Bannerimg from '../assets/buy.png'
 
 const Buying = () => {
     const [products, setProducts] = useState([]);
@@ -45,7 +47,7 @@ const Buying = () => {
     return (
         <div className="bg-gray-100 min-h-screen">
             <Navigator />
-            <FeaturedShoeCarousel />
+            <Banner img={Bannerimg} />
             <div className="container mx-auto py-8 px-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {products.flatMap((product, productIndex) =>

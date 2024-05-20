@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Cart = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null
@@ -24,7 +25,7 @@ const Cart = ({ isOpen, onClose, children }) => {
             <span>$0.00</span>
           </div>
           {/* Checkout button */}
-          <button className="transition ease-in-out delay-150 hover:scale-110 duration-300 w-full rounded-full py-2 mt-2 text-white bg-blue-500 rounded hover:bg-blue-600">Checkout</button>
+           <Link to="checkout"><button onClick={onClose} className="transition ease-in-out delay-150 hover:scale-110 duration-300 w-full rounded-full py-2 mt-2 text-white bg-blue-500 rounded hover:bg-blue-600">Checkout</button></Link>
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ const ChatComponent = () => {
 
   return (
     <div className="fixed bottom-0 right-0 mb-4 mr-4 max-w-md shadow-lg rounded-lg">
-      <div className="p-4 opacity-85 bg-black text-white flex justify-between items-center rounded-t-lg">
+      <div className="animate-pulse p-4 opacity-85 bg-black text-white flex justify-between items-center rounded-t-lg">
         <h2 className="font-bold mr-2">AI Assistant</h2>
         <button onClick={toggleChat}>
           {isVisible ? 'X' : '+'}

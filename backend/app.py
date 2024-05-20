@@ -8,8 +8,6 @@ from controllers.checkout import checkout_blueprint
 
 from controllers.profile import profile_blueprint
 
-from controllers.sneakers import sneakers_blueprint
-from controllers.homepage import homepage_blueprint
 from controllers.openai import shoe_details_blueprint
 
 
@@ -41,8 +39,7 @@ app.register_blueprint(checkout_blueprint, url_prefix='/checkout')
 app.register_blueprint(profile_blueprint, url_prefix='/profile')
 #app.register_blueprint(homepage_blueprint, url_prefix='/')
 
-app.register_blueprint(sneakers_blueprint, url_prefix='/sneakers')
-app.register_blueprint(homepage_blueprint, url_prefix='/')
+
 app.register_blueprint(shoe_details_blueprint, url_prefix='/shoegpt')
 
 
