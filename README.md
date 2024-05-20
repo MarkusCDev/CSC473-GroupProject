@@ -30,8 +30,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/MarkusCDev/CSC473-GroupProject">
+    <img src="Logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Sole Sphere</h3>
@@ -43,14 +43,14 @@ want to enhance the experience of sneaker buying by providing competitor pricing
 information on the sneakers that our users post, so that way all your research can be done on one
 website without having to bounce back and forth.
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/MarkusCDev/CSC473-GroupProject"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://github.com/MarkusCDev/CSC473-GroupProject">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/MarkusCDev/CSC473-GroupProject/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/MarkusCDev/CSC473-GroupProject/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -272,10 +272,10 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p>Markus Chmiel - mchmiel000@citymail.cuny.edu</p>
 <p>Melido Bello - mbellon000@citymail.cuny.edu</p>
-<p>Devin Name - email@email_client.com</p>
+<p>Devin Munoz - dmunoz005@citymail.cuny.edu</p>
 
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/MarkusCDev/CSC473-GroupProject](https://github.com/MarkusCDev/CSC473-GroupProject)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -284,9 +284,29 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+- **Team Members**: 
+  - Markus Chmiel
+  - Devin Munoz
+  - Melido Bello
+
+- **Mentors and Advisors**:
+  - Donato Cruz - For guidance and support throughout the project.
+
+- **Special Thanks**:
+  - [Person's Name] - For providing valuable feedback and testing.
+  - [Person's Name] - For design and UX consultation.
+
+- **Resources**:
+  - [React Documentation](https://reactjs.org/docs/getting-started.html) - For comprehensive React documentation.
+  - [Firebase Documentation](https://firebase.google.com/docs) - For Firebase integration and support.
+  - [Google Cloud Documentation](https://cloud.google.com/docs) - For deploying and managing the backend.
+  - [Flask Documentation](https://flask.palletsprojects.com/en/2.0.x/) - For backend development with Flask.
+  - [Tailwind CSS Documentation](https://tailwindcss.com/docs) - For styling and layout with Tailwind CSS.
+
+- **Tools**:
+  - [Visual Studio Code](https://code.visualstudio.com/) - For a powerful and versatile code editor.
+  - [GitHub](https://github.com/) - For version control and project management.
+  - [Postman](https://www.postman.com/) - For API testing and development.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -295,15 +315,15 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
+[contributors-url]: https://github.com/MarkusCDev/CSC473-GroupProject/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
+[forks-url]: https://github.com/MarkusCDev/CSC473-GroupProject/network/members
 [stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
+[stars-url]: https://github.com/MarkusCDev/CSC473-GroupProject/stargazers
 [issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
+[issues-url]: https://github.com/MarkusCDev/CSC473-GroupProject/issues
 [license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[license-url]: https://github.com/MarkusCDev/CSC473-GroupProject/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png
