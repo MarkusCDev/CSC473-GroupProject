@@ -9,7 +9,7 @@ const BuyShoeCard = ({ product, shoe }) => {
 
     return (
         <Link to={`/shoe/${product.id}`} className="flex-none snap-center">
-            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 card" style={{ width: '250px', height: '400px' }}>
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 card" style={{ width: '250px', height: '300px' }}>
                 <img src={shoe.imageUrl} alt={shoe.name} className="w-full h-40 object-cover" />
                 <div className="p-4">
                     <h3 className="text-lg leading-6 font-bold text-gray-900">{shoe.name}</h3>
