@@ -1,17 +1,38 @@
 import React, { useRef, useEffect, useState } from 'react';
 import TradeShoeCard from '../Cards/TradeShoeCard';
 
-// Updated productIds structure to contain only IDs
-const productIds = [
-    { shoeId: 1 },
-    { shoeId: 2 },
-    { shoeId: 3 },
-    { shoeId: 4 }
-];
-
 function TradeShoesCarousel() {
     const carouselRef = useRef(null);
+    const [products, setProducts] = useState([]);
     const [cardWidth, setCardWidth] = useState(0);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/data_retrieval/fetch_data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        collection: 'Trading Shoes',
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products');
+                }
+
+                const result = await response.json();
+                setProducts(result.data);
+            } catch (error) {
+                setErrorMessage('Error fetching products');
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     useEffect(() => {
         if (carouselRef.current) {
@@ -20,7 +41,7 @@ function TradeShoesCarousel() {
                 setCardWidth(cardElement.offsetWidth);
             }
         }
-    }, []);
+    }, [products]);
 
     const scrollLeft = () => {
         carouselRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
@@ -29,6 +50,14 @@ function TradeShoesCarousel() {
     const scrollRight = () => {
         carouselRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
     };
+
+    if (errorMessage) {
+        return <div>{errorMessage}</div>;
+    }
+
+    if (products.length === 0 || products.every(product => product.trading.length === 0)) {
+        return <div>No shoes available for trade</div>;
+    }
 
     return (
         <div className="">
@@ -49,11 +78,13 @@ function TradeShoesCarousel() {
                         msOverflowStyle: 'none',
                     }}
                 >
-                    {productIds.map(({ shoeId }) => (
-                        <div key={shoeId} className="flex-none">
-                            <TradeShoeCard product={{ id: shoeId }} />
-                        </div>
-                    ))}
+                    {products.flatMap(product =>
+                        product.trading.map((shoe, index) => (
+                            <div key={`${product.owner}-${shoe.name}-${index}`} className="flex-none">
+                                <TradeShoeCard product={{ ...product, shoe }} />
+                            </div>
+                        ))
+                    )}
                 </div>
                 <div className="absolute inset-y-0 right-0 z-20 flex items-center">
                     <button

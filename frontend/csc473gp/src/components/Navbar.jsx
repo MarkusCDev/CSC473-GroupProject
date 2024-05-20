@@ -52,6 +52,7 @@ const Navbar = () => {
             {user ? (
               <>
                 <li className="relative group">
+
                 <button id="dropdownDelayButton" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0" type="button" onMouseEnter={() => setNotificationDropdownOpen(true)} onMouseLeave={() => setNotificationDropdownOpen(false)}>
                     <img width="30px" height="30px" src={bell} />
                   </button>
@@ -60,7 +61,7 @@ const Navbar = () => {
                       <li>
                         <div className='flex justify-between'>
                           <a>Your <b>Jordan 1</b> was Sold!</a>
-                          <a className='ml-6'><img width='15px' src={bell}/></a>
+                          <a className=''><img width='15px' src={bell}/></a>
                         </div>
                       </li>
                     </ul>
@@ -84,5 +85,7 @@ const Navbar = () => {
   )
 }
 
+
 export default Navbar
+
 

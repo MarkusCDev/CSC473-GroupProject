@@ -1,19 +1,38 @@
 import React, { useRef, useEffect, useState } from 'react';
 import BuyShoeCard from '../Cards/BuyShoeCard';
 
-// Updated productIds structure
-const productIds = [
-    { shoeId: 101 },
-    { shoeId: 201 },
-    { shoeId: 202 },
-    { shoeId: 301 },
-    { shoeId: 302 },
-    { shoeId: 401 }
-];
-
 function BuyShoesCarousel() {
     const carouselRef = useRef(null);
+    const [products, setProducts] = useState([]);
     const [cardWidth, setCardWidth] = useState(0);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/data_retrieval/fetch_data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        collection: 'Buying Shoes',
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products');
+                }
+
+                const result = await response.json();
+                setProducts(result.data);
+            } catch (error) {
+                setErrorMessage('Error fetching products');
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     useEffect(() => {
         if (carouselRef.current) {
@@ -22,15 +41,23 @@ function BuyShoesCarousel() {
                 setCardWidth(cardElement.offsetWidth);
             }
         }
-    }, []);
+    }, [products]);
 
     const scrollLeft = () => {
-        carouselRef.current.scrollBy({ left: -cardWidth * 5, behavior: 'smooth' });
+        carouselRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
     };
 
     const scrollRight = () => {
-        carouselRef.current.scrollBy({ left: cardWidth * 5, behavior: 'smooth' });
+        carouselRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
     };
+
+    if (errorMessage) {
+        return <div>{errorMessage}</div>;
+    }
+
+    if (products.length === 0 || products.every(product => product.selling.length === 0)) {
+        return <div>No shoes available for sale</div>;
+    }
 
     return (
         <div className="">
@@ -45,17 +72,19 @@ function BuyShoesCarousel() {
                 </div>
                 <div
                     ref={carouselRef}
-                    className="flex overflow-x-scroll scrollbar-hide gap-2 w-full"
+                    className="flex overflow-x-scroll scrollbar-hide gap-4 w-full"
                     style={{
                         scrollbarWidth: 'none',
                         msOverflowStyle: 'none',
                     }}
                 >
-                    {productIds.map(({ shoeId }) => (
-                        <div key={shoeId} className="flex-none w-1/5">
-                            <BuyShoeCard productId={shoeId} />
-                        </div>
-                    ))}
+                    {products.flatMap(product =>
+                        product.selling.map((shoe, index) => (
+                            <div key={`${product.id}-${index}`} className="flex-none">
+                                <BuyShoeCard product={product} shoe={shoe} />
+                            </div>
+                        ))
+                    )}
                 </div>
                 <div className="absolute inset-y-0 right-0 z-20 flex items-center">
                     <button

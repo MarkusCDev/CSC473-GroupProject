@@ -10,7 +10,7 @@ const ShoePage = () => {
     useEffect(() => {
         const fetchShoeDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/sneakers/info/${shoeId}`);
+                const response = await axios.get(`http://localhost:8080/sneakers/info/${shoeId}`);
                 if (response.data && response.data.sneaker_details) {
                     setShoe(response.data.sneaker_details);
                 } else {

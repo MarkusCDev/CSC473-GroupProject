@@ -15,16 +15,24 @@ import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Profile from './pages/Profile'
+import Checkout from './pages/Checkout'
 import AddItem from './pages/AddItem'
 import Buying from './pages/Buying';
-import ShoeDetailPage from './pages/ShoeDetailPage'
+
+import BuyShoeDetailPage from './pages/BuyShoeDetailPage'
+import TradeShoeDetailPage from './pages/TradeShoeDetailPage'
+
+import CreateBuying from './pages/CreateBuying'
+import CreateTrading from './pages/CreateTrading'
+
 import Trading from './pages/Trading'
 import ShoePage from './pages/ShoePage'
 import NotFound from './pages/NotFound'
-import Checkout from './pages/Checkout'
 import ChatAssistant from './components/ChatAssistant'
+import Auction from './pages/Auction'
 
 import ProductList from './pages/ProductList'
+
 
 
 const App = () => {
@@ -32,27 +40,34 @@ const App = () => {
     <UserAuthContextProvider>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Landing/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/signup" element={<Signup/>}/>
+        <Route exact path="/" element={<><Landing/><ChatAssistant /></>}/>
+        <Route exact path="/login" element={<Login/>}/>
+        <Route exact path="/signup" element={<Signup/>}/>
 
-        <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
-        <Route path="/add-item" element={<ProtectedRoute><AddItem/></ProtectedRoute>}/>
+        <Route exact path="/profile" element={<><ProtectedRoute><Profile/></ProtectedRoute><ChatAssistant /></>}/>
+        <Route exact path="/add-item" element={<ProtectedRoute><AddItem/></ProtectedRoute>}/>
 
         <Route path="/checkout" element={<ProtectedRoute><Checkout/></ProtectedRoute>}/>
 
-        <Route path="/Buying" element={<Buying/>}/>
-        <Route path="/Trading" element={<Trading/>}/>
-        
-        <Route path="/sneakers/:shoeId" element={<ShoePage/>}/>
+        <Route exact path="/Auctioning" element={<><Auction/><ChatAssistant /></>}/>
+        <Route exact path="/Buying" element={<><Buying/><ChatAssistant /></>}/>
+        <Route exact path="/Trading" element={<><Trading/><ChatAssistant /></>}/>
+        <Route exact path="/CreateBuying" element={<CreateBuying/>}/>
+        <Route exact path="/CreateTrading" element={<CreateTrading/>}/>
 
-        <Route path="/shoe/:id" element={<ShoeDetailPage />} />
+        
+        <Route exact path="/shoe/:id" element={<><BuyShoeDetailPage /><ChatAssistant /></>} />
+        <Route exact path="/trade-shoe/:id" element={<><TradeShoeDetailPage /><ChatAssistant /></>} />
+
+        <Route path="/sneakers/:shoeId" element={<><ShoePage/><ChatAssistant /></>}/>
+
+        
 
 
         <Route path="*" element={<NotFound/>}/>
 
       </Routes>
-      <ChatAssistant />
+      
     </UserAuthContextProvider>
   )
 }
