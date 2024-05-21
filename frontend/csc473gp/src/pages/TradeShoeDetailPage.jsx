@@ -23,7 +23,7 @@ const Landing = () => {
       <div className='w-full'>
         <Navigator />
       </div>
-      <div className='w-full mt-8'> {/* Added margin-top here */}
+      <div className='w-full'> {/* Added margin-top here */}
         <TradeShoeDetail />
       </div>
       <div className='max-w-screen-2xl mx-auto p-5 sm:p-10 md:p-16'>

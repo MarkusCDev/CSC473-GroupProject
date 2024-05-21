@@ -26,6 +26,8 @@ import AddItemModal from '../components/Modal'
 import StoreModal from '../components/Modal'
 import ProfileModal from '../components/Modal'
 
+import AddItem from './AddItem'
+
 const Profile = () => {
 
   const { user } = useUserAuth()
@@ -61,7 +63,7 @@ const Profile = () => {
     try {
       // Make an API call to create user profile
       const response = await axios.post(
-        `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/update_profile`,
+        `${import.meta.env.VITE_APP_CLOUD_API_URL2}/profile/update_profile`,
         {
           first_name: fname,
           last_name: lname,
@@ -99,7 +101,7 @@ const Profile = () => {
     try {
       // Make an API call to create user profile
       const response = await axios.post(
-        `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/update_profile`,
+        `${import.meta.env.VITE_APP_CLOUD_API_URL2}/profile/update_profile`,
         {
           card: cardformat
         },
@@ -121,7 +123,7 @@ const Profile = () => {
   const getProfileData = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/get_profile`, {
+        `${import.meta.env.VITE_APP_CLOUD_API_URL2}/profile/get_profile`, {
           headers: {
             Authorization: `${user.email}`,
             "Content-Type": "application/json",
@@ -273,6 +275,7 @@ const Profile = () => {
 
     <div className="col-span-2 md:col-span-2 row-span-1 bg-opacity-95 bg-gray-200 p-8 rounded-lg shadow-xl flex justify-around">
       <button onClick={() => setAddItemModalOpen(true)}><img width="100px" height="30px" src={additem}/></button>
+      {/* <Link to='/add-item'><img width="100px" height="30px" src={additem}/></Link> */}
       <button onClick={() => setStoreModalOpen(true)}><img width="100px" height="30px" src={store}/></button>
       <button onClick={() => setProfileModalOpen(true)}><img width="100px" height="30px" src={cog}/></button>
     </div>
@@ -289,8 +292,7 @@ const Profile = () => {
 </div>
 
   <AddItemModal isOpen={isAddItemModalOpen} onClose={() => setAddItemModalOpen(false)}>
-        <h1 className="text-lg font-bold">Add Item</h1>
-        <p>This is the the Add Item modal</p>
+        <AddItem/>
       </AddItemModal>
 
   <StoreModal isOpen={isStoreModalOpen} onClose={() => setStoreModalOpen(false)}>
@@ -306,13 +308,8 @@ const Profile = () => {
       <div className='flex z-0 w-full mb-5 justify-start'>
         <img width="80px" className="rounded-full" src={pfp || profile} alt="Profile"/>
         <span onClick={openFileExplorer} className='ml-5 my-auto'><img width='30px' src={edit}/></span>
-        <input
-          type="file"
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          style={{ display: 'none' }} 
-        />
-        </div>
+        <input type="file" ref={fileInputRef} onChange={handleFileChange} style={{ display: 'none' }}/>
+      </div>
 
         {/* Line 2 */}
         <div className="flex flex-row space-x-4">
@@ -442,15 +439,15 @@ const Profile = () => {
                 </div>
 
                 <div className="mb-1 p-2">
-                    <input id="name" name="name" type="text" placeholder="Card Holder Name" required className="w-full px-2 py-1 lg:px-4 lg:py-2 text-gray-700 bg-gray-100 text-xs lg:text-sm border border-gray-300 rounded-lg focus:outline-none focus:bg-white"/>
+                    <input name="name" type="text" placeholder="Card Holder Name" className="w-full px-2 py-1 lg:px-4 lg:py-2 text-gray-700 bg-gray-100 text-xs lg:text-sm border border-gray-300 rounded-lg focus:outline-none focus:bg-white"/>
                 </div>
 
                 <div className="w-full">
                     <div className="flex my-1 p-2">
-                        <input type="text" valuse={cardnumber} onChange={(e) => setCardNumber(e.target.value)} id="card" required minLength="16" maxLength="16" className="w-5/6 border-t border-b border-l border-gray-300 flex-1 text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 rounded-l-lg focus:bg-white focus:outline-none" placeholder="Card Number"/>
-                        <input type="text" valuse={mm} onChange={(e) => setMM(e.target.value)} id="month" required maxLength="2" className="w-1/6 border-t border-b border-gray-300 inline-block text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 focus:bg-white focus:outline-none" placeholder="MM"/>
-                        <input type="text" valuse={yy} onChange={(e) => setYY(e.target.value)} id="year" required maxLength="2" className="w-1/6 border-t border-b border-gray-300 inline-block text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 focus:bg-white focus:outline-none" placeholder="YY"/>
-                        <input type="text" id="cvc" required maxLength="3" className="w-1/6 border-t border-b border-r border-gray-300 inline-block text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 focus:bg-white rounded-r-lg focus:outline-none" placeholder="CVC"/>
+                        <input type="text" valuse={cardnumber} onChange={(e) => setCardNumber(e.target.value)} required minLength="16" maxLength="16" className="w-5/6 border-t border-b border-l border-gray-300 flex-1 text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 rounded-l-lg focus:bg-white focus:outline-none" placeholder="Card Number"/>
+                        <input type="text" valuse={mm} onChange={(e) => setMM(e.target.value)} required maxLength="2" className="w-1/6 border-t border-b border-gray-300 inline-block text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 focus:bg-white focus:outline-none" placeholder="MM"/>
+                        <input type="text" valuse={yy} onChange={(e) => setYY(e.target.value)} required maxLength="2" className="w-1/6 border-t border-b border-gray-300 inline-block text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 focus:bg-white focus:outline-none" placeholder="YY"/>
+                        <input type="text" required maxLength="3" className="w-1/6 border-t border-b border-r border-gray-300 inline-block text-xs lg:text-sm py-1 lg:py-2 px-2 lg:px-4 bg-gray-100 text-gray-700 focus:bg-white rounded-r-lg focus:outline-none" placeholder="CVC"/>
                     </div>
                 </div>
 

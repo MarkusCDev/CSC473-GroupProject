@@ -1,5 +1,6 @@
 from firebase_admin import firestore
 
+
 def create_user_profile(user_id, profile_fields):
     user_profile_ref = firestore.client().collection('Users').document(user_id)
     user_profile_ref.set(profile_fields, merge=True)
@@ -10,7 +11,7 @@ def fetch_user_profile(user_id):
 
     if user_snapshot.exists:
         fields_to_retrieve = ['email', 'first_name', 'last_name', 'address', 'city',
-            'state', 'zipcode', 'phone', 'gender', 'size', 'pfp', 'card']
+            'state', 'zipcode', 'phone', 'gender', 'size', 'pfp', 'card', 'cart']
         user_profile_fields = {field: user_snapshot.get(field) if user_snapshot.get(field) is not None else '' for field in fields_to_retrieve}
         return user_profile_fields
     else:
@@ -19,3 +20,27 @@ def fetch_user_profile(user_id):
 def update_user_profile(user_id, profile_fields):
     user_profile_ref = firestore.client().collection('Users').document(user_id)
     user_profile_ref.update(profile_fields)
+
+def update_user_store(user_id, new_item):
+    try:
+        user_profile_ref = firestore.client().collection('Users').document(user_id)
+        print(f"Updating store for user: {user_id} with item: {new_item}")  # Log user_id and new_item
+        user_profile_ref.update({
+            'store': firestore.ArrayUnion([new_item])
+        })
+        print("Store updated successfully")  # Log successful update
+    except Exception as e:
+        print(f"Error updating store for user {user_id} with item {new_item}: {e}")  # Log detailed error
+        raise  # Re-raise the exception to be caught by the route handler
+
+def update_user_cart(user_id, new_item):
+    try:
+        user_profile_ref = firestore.client().collection('Users').document(user_id)
+        print(f"Updating cart for user: {user_id} with item: {new_item}")  # Log user_id and new_item
+        user_profile_ref.update({
+            'cart': firestore.ArrayUnion([new_item])
+        })
+        print("Cart updated successfully")  # Log successful update
+    except Exception as e:
+        print(f"Error updating cart for user {user_id} with item {new_item}: {e}")  # Log detailed error
+        raise  # Re-raise the exception to be caught by the route handler

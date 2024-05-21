@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import FeaturedShoeCarousel from '../components/Carousel/FeaturedShoeCarousel';
 import TradeShoeCard from '../components/Cards/TradeShoeCard';
 import Navigator from '../components/Navigator';
-import Banner from '../components/Banner'
-import Bannerimg from '../assets/trade.png'
+import Banner from '../components/Banner';
+import Bannerimg from '../assets/trade.png';
+import axios from 'axios';
 
 const Trading = () => {
     const [products, setProducts] = useState([]);
@@ -18,7 +18,7 @@ const Trading = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        collection: 'Trading Shoes',
+                        collection: 'Trading',
                     }),
                 });
 
@@ -28,6 +28,7 @@ const Trading = () => {
 
                 const result = await response.json();
                 setProducts(result.data);
+                console.log("Selling Data", result.data);
             } catch (error) {
                 setErrorMessage('Error fetching products');
             }
@@ -37,31 +38,21 @@ const Trading = () => {
     }, []);
 
     if (errorMessage) {
-        return <div>{errorMessage}</div>;
-    }
-
-    if (products.length === 0 || products.every(product => product.trading.length === 0)) {
-        return <div>No shoes available for trade</div>;
+        return <div className="text-red-500 text-center mt-4">{errorMessage}</div>;
     }
 
     return (
-        <div>
+        <div className="bg-gray-100 min-h-screen">
             <Navigator />
-            <Banner img={Bannerimg}/>
-            <div className='max-w-screen-2xl mx-auto pt-2 p-5 sm:p-10 md:p-8'>
-                <div className="flex flex-wrap scrollbar-hide w-full" style={{
-                    scrollbarWidth: 'none',
-                    msOverflowStyle: 'none',
-                }}>
-                    {products.flatMap((product, index) =>
-                        product.trading.map((shoe, shoeIndex) => (
-                            <div key={`${product.owner}-${shoe.name}-${shoeIndex}`} className="w-1/2 px-2">
-                                <TradeShoeCard product={{ ...product, shoe }} />
-                            </div>
-                        ))
-                    )}
+            <Banner img={Bannerimg} />
+            <div className="container mx-auto py-8 px-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {products.map((product, index) => (
+                        <TradeShoeCard key={index} product={product} />
+                    ))}
                 </div>
             </div>
+
         </div>
     );
 };

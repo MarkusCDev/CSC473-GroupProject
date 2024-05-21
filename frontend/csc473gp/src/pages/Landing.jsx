@@ -8,6 +8,7 @@ import tradeimg from '../assets/exchange.png'
 import auctionimg from '../assets/duration.png'
 import TradeShoesCarousel from '../components/Carousel/TradeShoesCarousel'
 import BuyShoesCarousel from '../components/Carousel/BuyShoesCarousel'
+import AuctionShoeCarousel from '../components/Carousel/AuctionShoeCarousel'
 
 const Landing = () => {
   // Refs for scrolling
@@ -38,15 +39,15 @@ const Landing = () => {
       </div>
       <div ref={saleRef} className='w-3/5 mx-auto p-2 sm:p-4 md:p-6'> 
         <SliderTitle img={buyimg} title='Recently Added For Sale' link='/Buying' />
-        <BuyShoesCarousel />
+        {/* <BuyShoesCarousel /> */}
       </div>
       <div className='w-3/5 mx-auto p-2 sm:p-4 md:p-6'> 
         <SliderTitle img={tradeimg} title='Recently Added Trades' link='/Trading' />
-        <TradeShoesCarousel />
+        {/* <TradeShoesCarousel /> */}
       </div>
       <div className='w-3/5 mx-auto p-2 sm:p-4 md:p-6'> 
         <SliderTitle img={auctionimg} title='Recently Added Auctions' link='/Buying' />
-        <BuyShoesCarousel />
+        {/* <AuctionShoeCarousel /> */}
       </div>
     </div>
   )

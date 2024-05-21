@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 const ChatComponent = () => {
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
   const [messages, setMessages] = useState([
     { id: 1, sender: 'Tony Stark', text: 'Hey! Need help finding something? 👋' },
   ])

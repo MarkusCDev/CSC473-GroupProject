@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import axios from 'axios';
 import BuyShoeCard from '../Cards/BuyShoeCard';
 
 function BuyShoesCarousel() {
@@ -10,22 +11,15 @@ function BuyShoesCarousel() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:5000/data_retrieval/fetch_data', {
-                    method: 'POST',
+                const response = await axios.post('http://127.0.0.1:5000/data_retrieval/fetch_data', {
+                    collection: 'Selling',
+                }, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({
-                        collection: 'Buying Shoes',
-                    }),
                 });
 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch products');
-                }
-
-                const result = await response.json();
-                setProducts(result.data);
+                setProducts(response.data.data);
             } catch (error) {
                 setErrorMessage('Error fetching products');
             }
@@ -55,7 +49,7 @@ function BuyShoesCarousel() {
         return <div>{errorMessage}</div>;
     }
 
-    if (products.length === 0 || products.every(product => product.selling.length === 0)) {
+    if (products.length === 0) {
         return <div>No shoes available for sale</div>;
     }
 
@@ -78,13 +72,11 @@ function BuyShoesCarousel() {
                         msOverflowStyle: 'none',
                     }}
                 >
-                    {products.flatMap(product =>
-                        product.selling.map((shoe, index) => (
-                            <div key={`${product.id}-${index}`} className="flex-none">
-                                <BuyShoeCard product={product} shoe={shoe} />
-                            </div>
-                        ))
-                    )}
+                    {products.map((product, index) => (
+                        <div key={`${product.id}-${index}`} className="flex-none">
+                            <BuyShoeCard product={product} />
+                        </div>
+                    ))}
                 </div>
                 <div className="absolute inset-y-0 right-0 z-20 flex items-center">
                     <button

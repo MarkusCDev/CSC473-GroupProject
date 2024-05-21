@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import FeaturedShoeCarousel from '../components/Carousel/FeaturedShoeCarousel';
 import BuyShoeCard from '../components/Cards/BuyShoeCard';
 import Navigator from '../components/Navigator';
-import Banner from '../components/Banner'
-import Bannerimg from '../assets/buy.png'
+import Banner from '../components/Banner';
+import Bannerimg from '../assets/buy.png';
+import axios from 'axios';
 
 const Buying = () => {
     const [products, setProducts] = useState([]);
@@ -18,7 +18,7 @@ const Buying = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        collection: 'Buying Shoes',
+                        collection: 'Selling',
                     }),
                 });
 
@@ -28,6 +28,7 @@ const Buying = () => {
 
                 const result = await response.json();
                 setProducts(result.data);
+                console.log("Selling Data", result.data);
             } catch (error) {
                 setErrorMessage('Error fetching products');
             }
@@ -40,27 +41,18 @@ const Buying = () => {
         return <div className="text-red-500 text-center mt-4">{errorMessage}</div>;
     }
 
-    if (products.length === 0 || products.every(product => product.selling.length === 0)) {
-        return <div className="text-center mt-4">No shoes available for sale</div>;
-    }
-
     return (
         <div className="bg-gray-100 min-h-screen">
             <Navigator />
             <Banner img={Bannerimg} />
             <div className="container mx-auto py-8 px-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {products.flatMap((product, productIndex) =>
-                        product.selling.map((shoe, shoeIndex) => (
-                            <BuyShoeCard
-                                key={`${product.owner}-${shoe.name}-${productIndex}-${shoeIndex}`}
-                                product={product}
-                                shoe={shoe}
-                            />
-                        ))
-                    )}
+                    {products.map((product, index) => (
+                        <BuyShoeCard key={index} product={product} />
+                    ))}
                 </div>
             </div>
+
         </div>
     );
 };

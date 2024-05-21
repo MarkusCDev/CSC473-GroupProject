@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from models.profile import create_user_profile, fetch_user_profile, update_user_profile
+from models.profile import create_user_profile, fetch_user_profile, update_user_profile, update_user_store, update_user_cart
 
 profile_blueprint = Blueprint('profile', __name__)
 
@@ -32,3 +32,34 @@ def update_profile():
 
     return jsonify({"message": "Profile updated successfully"})
     
+@profile_blueprint.route('/add_to_store', methods=['POST'])
+def add_to_store():
+    data = request.get_json()
+    user_id = data.get('user_id')
+    new_item = data.get('new_item')
+
+    if not user_id or not new_item:
+        return jsonify({"message": "User ID and new item must be provided"}), 400
+
+    try:
+        update_user_store(user_id, new_item)
+        return jsonify({"message": "Store updated successfully"})
+    except Exception as e:
+        print(f"Error updating store: {e}") 
+        return jsonify({"message": "Failed to update store"}), 400
+    
+@profile_blueprint.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    data = request.get_json()
+    user_id = data.get('user_id')
+    new_item = data.get('new_item')
+
+    if not user_id or not new_item:
+        return jsonify({"message": "User ID and new item must be provided"}), 400
+
+    try:
+        update_user_cart(user_id, new_item)
+        return jsonify({"message": "Cart updated successfully"})
+    except Exception as e:
+        print(f"Error updating store: {e}") 
+        return jsonify({"message": "Failed to update Cart"}), 400

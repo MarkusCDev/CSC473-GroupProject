@@ -2,9 +2,9 @@ from flask import Blueprint, jsonify, request
 from models.openai import ShoeBot
 
 
-shoe_details_blueprint = Blueprint('/details', __name__)
+shoe_details_blueprint = Blueprint('shoegpt', __name__)
 
-@shoe_details_blueprint.route('/',methods = ["POST"])
+@shoe_details_blueprint.route('/gendata',methods = ["POST"])
 def fetch_shoe_details():
     chatgpt = ShoeBot()
     data = request.get_json()
