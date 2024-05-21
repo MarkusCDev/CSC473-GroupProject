@@ -23,4 +23,19 @@ def fetch_shoe_details():
     
     return openai_output
 
+@shoe_details_blueprint.route('/genquery',methods = ["POST"])
+def fetch_openai_answer():
+    chatgpt = ShoeBot()
+    data = request.get_json()
+
+    query = data.get('query')
+    inventory = data.get('inventory')
+
+    shoe_genereted_data = chatgpt.ask_ai(query, inventory)
+
+    openai_output = jsonify(shoe_genereted_data)
+    print(openai_output)
+    
+    return openai_output
+
 

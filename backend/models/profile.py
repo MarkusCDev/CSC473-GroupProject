@@ -44,3 +44,18 @@ def update_user_cart(user_id, new_item):
     except Exception as e:
         print(f"Error updating cart for user {user_id} with item {new_item}: {e}")  # Log detailed error
         raise  # Re-raise the exception to be caught by the route handler
+
+def fetch_shoe_names():
+    collections = ['Selling', 'Trading', 'Auctioning']
+    shoe_names = []
+
+    for collection in collections:
+        collection_ref = firestore.client().collection(collection)
+        docs = collection_ref.stream()
+
+        for doc in docs:
+            shoe_name = doc.get('shoe_name')
+            if shoe_name:
+                shoe_names.append(shoe_name)
+
+    return shoe_names
