@@ -11,7 +11,7 @@ def fetch_user_profile(user_id):
 
     if user_snapshot.exists:
         fields_to_retrieve = ['email', 'first_name', 'last_name', 'address', 'city',
-            'state', 'zipcode', 'phone', 'gender', 'size', 'pfp', 'card', 'cart']
+            'state', 'zipcode', 'phone', 'gender', 'size', 'pfp', 'card', 'cart', 'transactions']
         user_profile_fields = {field: user_snapshot.get(field) if user_snapshot.get(field) is not None else '' for field in fields_to_retrieve}
         return user_profile_fields
     else:

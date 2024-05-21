@@ -17,7 +17,7 @@ def get_profile():
     user_id = request.headers.get('Authorization')
 
     user_profile_fields = fetch_user_profile(user_id)
-
+    
     if user_profile_fields:
         return jsonify(user_profile_fields)
     else:
@@ -28,9 +28,12 @@ def update_profile():
     user_id = request.headers.get('Authorization')
     profile_fields = request.get_json()
 
-    update_user_profile(user_id, profile_fields)
-
-    return jsonify({"message": "Profile updated successfully"})
+    try:
+        update_user_profile(user_id, profile_fields)
+        return jsonify({"message": "Profile updated successfully"})
+    except Exception as e:
+        print(f"Error updating profile: {e}")
+        return jsonify({"message": "Failed to update profile"}), 400
     
 @profile_blueprint.route('/add_to_store', methods=['POST'])
 def add_to_store():

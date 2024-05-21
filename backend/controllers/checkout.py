@@ -16,5 +16,5 @@ def add_to_cart():
         update_buy_sell_transaction(user_id, new_item)
         return jsonify({"message": "Transactions updated successfully"})
     except Exception as e:
-        print(f"Error updating store: {e}") 
+        print(f"Error updating store: {e}")
         return jsonify({"message": "Failed to update Transactions"}), 400
