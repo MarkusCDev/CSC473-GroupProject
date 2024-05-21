@@ -79,7 +79,7 @@ const Cart = ({ isOpen, onClose }) => {
           </button>
         </div>
         <div className="p-4">
-          {error && <p className="text-red-500">{error}</p>}
+          {/* {error && <p className="text-red-500">{error}</p>} */}
           {cart.length === 0 ? (
             <p>Your cart is empty</p>
           ) : (

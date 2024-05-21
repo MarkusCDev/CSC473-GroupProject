@@ -11,7 +11,7 @@ function TradeShoesCarousel() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.post('http://127.0.0.1:5000/data_retrieval/fetch_data', {
+                const response = await axios.post('https://testingbaka-e2agf6geqq-ue.a.run.app/data_retrieval/fetch_data', {
                     collection: 'Trading',
                 }, {
                     headers: {

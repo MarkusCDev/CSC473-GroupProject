@@ -11,7 +11,7 @@ def get_data():
     Expects a JSON body with at least a 'collection' key indicating the collection name.
     All other keys in the JSON body are treated as filters to apply when fetching the documents.
     
-    http://127.0.0.1:5000/data_retrieval/fetch_data
+    https://testingbaka-e2agf6geqq-ue.a.run.app/data_retrieval/fetch_data
 
     Example JSON Body:
     {

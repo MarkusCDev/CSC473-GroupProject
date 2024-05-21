@@ -11,7 +11,7 @@ def get_document():
     
     Expects a JSON body with 'collection' and 'document_id' keys.
     
-    http://127.0.0.1:5000/buying/fetch_document
+    https://testingbaka-e2agf6geqq-ue.a.run.app/buying/fetch_document
 
     Example JSON Body:
     {
