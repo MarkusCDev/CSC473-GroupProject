@@ -12,7 +12,7 @@ const Auction = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:5000/data_retrieval/fetch_data', {
+                const response = await fetch('https://testingbaka-e2agf6geqq-ue.a.run.app/data_retrieval/fetch_data', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

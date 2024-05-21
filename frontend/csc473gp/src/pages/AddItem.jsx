@@ -4,8 +4,10 @@ import edit from '../assets/account/edit.png'
 import { useUserAuth } from '../components/UserAuthentication'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 
 const AddItem = () => {
+  const navigate = useNavigate()
   const storage = getStorage()
   const {user} = useUserAuth()
   const [email, setEmail] = useState(user.email)
@@ -61,6 +63,7 @@ const AddItem = () => {
       );
       console.log("Store Updated:", response.data);
       setSuccessMessage('Shoe added successfully!');
+      navigate("/")
     } catch (error) {
       console.error(error);
       setErrorMessage("Error adding item to store. Please try again.");
@@ -131,7 +134,7 @@ const handleSubmit = async (e, formType, additionalFields = {}) => {
 
     const document = { ...baseDocument, ...collectionType };
 
-    const response = await fetch('http://127.0.0.1:5000/document_creation/create_document', {
+    const response = await fetch('https://testingbaka-e2agf6geqq-ue.a.run.app/document_creation/create_document', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(document),

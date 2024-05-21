@@ -9,28 +9,51 @@ import {
 } from "firebase/auth"
 import { auth } from "../firebase"
 import axios from "axios"
-
-{/* User Authentication handles firebase login, signup, logout, and identification if User is valid */}
+import { useNavigate } from 'react-router-dom'
 
 const userAuthContext = createContext()
 
 export function UserAuthContextProvider({ children }) {
-  const [user, setUser] = useState({}) 
+  const [user, setUser] = useState({})
   const [uid, setUid] = useState(null)
   const [email, setEmail] = useState(null)
   const [error, setError] = useState("")
+  const navigate = useNavigate() // useNavigate hook
 
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        navigate('/') // navigate to root path
+        return userCredential
+      })
+      .catch((error) => {
+        console.error("Sign-In Error:", error.message)
+        throw error
+      })
   }
 
   function signUp(email, password) {
     return createUserWithEmailAndPassword(auth, email, password)
-  }
-  function logOut() {
-    return signOut(auth)
+      .then((userCredential) => {
+        navigate('/') // navigate to root path
+        return userCredential
+      })
+      .catch((error) => {
+        console.error("Sign-Up Error:", error.message)
+        throw error
+      })
   }
 
+  function logOut() {
+    return signOut(auth)
+      .then(() => {
+        navigate('/') // navigate to root path
+      })
+      .catch((error) => {
+        console.error("Sign-Out Error:", error.message)
+        throw error
+      })
+  }
 
   function signInWithGoogle() {
     const provider = new GoogleAuthProvider()
@@ -46,7 +69,7 @@ export function UserAuthContextProvider({ children }) {
           const response = await axios.post(
             `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/create_profile`,
             {
-              email: email,
+              email: user.email,
               cart: [],
               transactions: [],
               store: [],
@@ -72,10 +95,12 @@ export function UserAuthContextProvider({ children }) {
           );
     
           console.log("Profile created:", response.data);
+          navigate('/') // navigate to root path
         } catch (error) {
           setError("Error creating profile. Please try again.");
           console.error(error);
         }
+        
         return userCredential
       })
       .catch((error) => {
@@ -84,7 +109,6 @@ export function UserAuthContextProvider({ children }) {
       })
   }
 
-  {/* Ensures user stays logged in until logged out (cookies keeps logged in unless logged out) */}
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       setUser(currentuser);
@@ -94,7 +118,6 @@ export function UserAuthContextProvider({ children }) {
     }
   }, [])
 
-  {/* Functions & userdata to use when importing UserAuthentication to other components */}
   return (
     <userAuthContext.Provider value={{ user, logIn, signUp, logOut, signInWithGoogle }}> 
       {children}
