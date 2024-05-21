@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useUserAuth } from '../components/UserAuthentication';
 import wallpaper from '../assets/wallpaper.jpg';
 
-
 const Section = ({ title, children, isOpen, onClick }) => (
   <div className="w-1/4 p-4 rounded-lg bg-black bg-opacity-70">
     <button
@@ -14,16 +13,16 @@ const Section = ({ title, children, isOpen, onClick }) => (
     </button>
     {isOpen ? <div className="mt-4">{children}</div> : null}
   </div>
-)
+);
 
 const Checkout = () => {
-  const { user } = useUserAuth()
-  const [email, setEmail] = useState(user?.email)
+  const { user } = useUserAuth();
+  const [email, setEmail] = useState(user?.email);
   const [openSection, setOpenSection] = useState('Items');
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
   const [error, setError] = useState("");
-  const [sellers, setSellers] = useState([])
+  const [sellers, setSellers] = useState([]);
 
   const handleSectionClick = (section) => {
     setOpenSection(openSection === section ? '' : section);
@@ -32,7 +31,8 @@ const Checkout = () => {
   const getProfileData = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_APP_CLOUD_API_URL2}/profile/get_profile`, {
+        `${import.meta.env.VITE_APP_CLOUD_API_URL2}/profile/get_profile`,
+        {
           headers: {
             Authorization: `${user.email}`,
             "Content-Type": "application/json",
@@ -41,10 +41,10 @@ const Checkout = () => {
       );
 
       console.log("Profile Cart:", response.data.cart);
-      setCart(response.data.cart || [])
+      setCart(response.data.cart || []);
       const sellerList = response.data.cart.map(item => item.seller_email);
-      setSellers(sellerList)
-      console.log("sellers", sellerList)
+      setSellers(sellerList);
+      console.log("sellers", sellerList);
     } catch (error) {
       console.error(error);
       setError("Failed to load profile data");
@@ -67,52 +67,60 @@ const Checkout = () => {
 
   const handleCheckout = async () => {
     if (!user) {
-      setError("You must be logged in to checkout.")
-      return
+      setError("You must be logged in to checkout.");
+      return;
     }
   
-    // for each seller pass in seller_email into loop to add the order to each item seller
-    // all of this is in cart.sell
-
-    // try {  
-    //   await axios.post(
-    //     `${import.meta.env.VITE_APP_CLOUD_API_URL}/checkout/transact`,
-    //     {
-    //       user_id: 
-    //       new_item: 
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: `${user.email}`,
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   )
-    //   console.log("Profile Updated:", response.data)
-    // } catch (error) {
-    //   setError("Failed to remove item from cart");
-    // }
-
-    // try {  
-    //   await axios.post(
-    //     `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/update_profile`,
-    //     {
-    //       cart: []
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: `${user.email}`,
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   )
-    //   console.log("Profile Updated:", response.data)
-    // } catch (error) {
-    //   setError("Failed to remove item from cart");
-    // }
-
-
+    try {
+      // Update seller records
+      const updateSellerPromises = cart.map(async (item) => {
+        try {
+          const response = await axios.post(
+            `${import.meta.env.VITE_APP_CLOUD_API_URL2}/checkout/transact`,
+            {
+              user_id: item.seller_email,
+              new_item: item
+            },
+            {
+              headers: {
+                Authorization: `${user.email}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          console.log("Seller Updated:", response.data);
+        } catch (error) {
+          console.error(`Failed to update seller ${item.seller_email}:`, error);
+          throw error;  // Ensure all promises in Promise.all fail if one fails
+        }
+      });
   
+      // Wait for all seller updates to complete
+      await Promise.all(updateSellerPromises);
+  
+      // Update buyer's transaction history and clear the cart
+      const response = await axios.post(
+        `${import.meta.env.VITE_APP_CLOUD_API_URL2}/profile/update_profile`,
+        {
+          cart: [],  // Clear the cart
+          transactions: cart  // Add items to transactions
+        },
+        {
+          headers: {
+            Authorization: `${user.email}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+  
+      // Clear the local cart state
+      setCart([]);
+      setTotal(0);
+      console.log("Profile Updated and Cart Cleared:", response.data);
+    } catch (error) {
+      console.error("Checkout Failed:", error);
+      setError("Failed to complete the checkout process. Please try again.");
+    }
   };
 
   return (
@@ -170,7 +178,6 @@ const Checkout = () => {
             />
           </div>
           <div className="flex flex-row space-x-4">
-    
             <div className="z-0 w-full mb-5">
               <input
                 type="text"
