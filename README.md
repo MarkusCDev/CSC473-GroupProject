@@ -119,7 +119,7 @@ Make sure you have node.js, git, and python downloaded on your end:
 * [Git](https://git-scm.com/)
 * [Python](https://www.python.org/downloads/)
 
-Next, open VS code, in a new folder open terminal then:
+Next, open VS code, in a new folder, then open terminal:
 
 ```git clone https://github.com/MarkusCDev/CSC473-GroupProject.git```
 
