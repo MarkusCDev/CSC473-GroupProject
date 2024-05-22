@@ -27,7 +27,7 @@ const ChatComponent = () => {
     }
   
     try {
-      const response = await axios.post('http://127.0.0.1:5000/shoegpt/genquery', {
+      const response = await axios.post('https://shoesphere-e2agf6geqq-ue.a.run.app/shoegpt/genquery', {
         query: newMessage,
         inventory: JSON.stringify(inventory), // Ensure inventory is in the correct format
       }, {
@@ -48,7 +48,7 @@ const ChatComponent = () => {
 
   const getInventory = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/profile/get_shoe_names', {
+      const response = await axios.get('https://shoesphere-e2agf6geqq-ue.a.run.app/profile/get_shoe_names', {
         headers: {
           Authorization: user.email,
           'Content-Type': 'application/json',

@@ -79,7 +79,7 @@ const Checkout = () => {
             `${import.meta.env.VITE_APP_CLOUD_API_URL2}/checkout/transact`,
             {
               user_id: item.seller_email,
-              new_item: item
+              new_item: item,
             },
             {
               headers: {
@@ -91,19 +91,53 @@ const Checkout = () => {
           console.log("Seller Updated:", response.data);
         } catch (error) {
           console.error(`Failed to update seller ${item.seller_email}:`, error);
-          throw error;  // Ensure all promises in Promise.all fail if one fails
+          throw error; // Ensure all promises in Promise.all fail if one fails
         }
       });
   
       // Wait for all seller updates to complete
       await Promise.all(updateSellerPromises);
   
+      // Delete items from their respective collections
+      const deleteItemPromises = cart.map(async (item) => {
+        const collectionMap = {
+          auction: "Auction",
+          trade: "Trade",
+          buy: "Buy",
+        };
+        const collection = collectionMap[item.type];
+  
+        if (collection) {
+          try {
+            const response = await axios.post(
+              'https://testingbaka-e2agf6geqq-ue.a.run.app/document_deletion/delete_document',
+              {
+                collection: collection,
+                document_id: item.id,
+              },
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+            console.log(`Item deleted from ${collection}:`, response.data);
+          } catch (error) {
+            console.error(`Failed to delete item ${item.id} from ${collection}:`, error);
+            throw error; // Ensure all promises in Promise.all fail if one fails
+          }
+        }
+      });
+  
+      // Wait for all deletions to complete
+      await Promise.all(deleteItemPromises);
+  
       // Update buyer's transaction history and clear the cart
       const response = await axios.post(
         `${import.meta.env.VITE_APP_CLOUD_API_URL2}/profile/update_profile`,
         {
-          cart: [],  // Clear the cart
-          transactions: cart  // Add items to transactions
+          cart: [], // Clear the cart
+          transactions: cart, // Add items to transactions
         },
         {
           headers: {

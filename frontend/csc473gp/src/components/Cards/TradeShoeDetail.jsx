@@ -73,7 +73,7 @@ function TradeShoeDetail() {
                                 </div>
                                 <div className="flex -mx-2 mb-4">
                                     <div className="w-full px-2">
-                                        <button onClick={handleAddToCart} className="w-full text-white bg-blue-500 py-2 px-4 rounded-full font-bold">Add to Cart</button>
+                                        <button onClick={handleAddToCart} className="w-full text-white bg-blue-500 py-2 px-4 rounded-full font-bold">Accept Trade</button>
                                     </div>
                                 </div>
                             </div>
