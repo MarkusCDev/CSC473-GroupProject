@@ -33,14 +33,11 @@ app.register_blueprint(document_retrieval, url_prefix='/document_retrieval')
 app.register_blueprint(document_creation_blueprint, url_prefix='/document_creation')
 app.register_blueprint(document_modification_blueprint, url_prefix='/document_modification')
 app.register_blueprint(document_deletion_blueprint, url_prefix='/document_deletion')
-
 app.register_blueprint(checkout_blueprint, url_prefix='/checkout')
-
 app.register_blueprint(profile_blueprint, url_prefix='/profile')
 #app.register_blueprint(homepage_blueprint, url_prefix='/')
-
-
 app.register_blueprint(shoe_details_blueprint, url_prefix='/shoegpt')
+
 
 
 if __name__ == "__main__":

@@ -57,14 +57,24 @@ const Signup = () => {
         try {
           // Make an API call to create user profile
           const response = await axios.post(
-            `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/create_profile`,
+            `${import.meta.env.VITE_APP_CLOUD_API_URL2}/profile/create_profile`,
             {
               email: email,
               cart: [],
               transactions: [],
-              selling: [],
-              trading: [],
-              auctions: []
+              store: [],
+              notifications: [],
+              first_name: "",
+              last_name: "",
+              address: "",
+              city: "",
+              state: "",
+              zipcode: "",
+              phone: "",
+              gender: "",
+              size: "",
+              pfp: "",
+              card: "",
             },
             {
               headers: {

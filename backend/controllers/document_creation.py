@@ -11,7 +11,7 @@ def create_document():
     Expects a JSON body with at least a 'collection' key indicating the collection name.
     All other keys in the JSON body are treated as the document data to be added to the collection.
     
-    http://127.0.0.1:5000/document_creation/create_document
+    https://testingbaka-e2agf6geqq-ue.a.run.app/document_creation/create_document
     
     Example JSON Body:
     {

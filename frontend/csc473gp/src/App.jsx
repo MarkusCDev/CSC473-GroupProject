@@ -21,6 +21,7 @@ import Buying from './pages/Buying';
 
 import BuyShoeDetailPage from './pages/BuyShoeDetailPage'
 import TradeShoeDetailPage from './pages/TradeShoeDetailPage'
+import AuctionShoeDetailPage from './pages/AuctionShoeDetailPage'
 
 import CreateBuying from './pages/CreateBuying'
 import CreateTrading from './pages/CreateTrading'
@@ -56,8 +57,9 @@ const App = () => {
         <Route exact path="/CreateTrading" element={<CreateTrading/>}/>
 
         
-        <Route exact path="/shoe/:id" element={<><BuyShoeDetailPage /><ChatAssistant /></>} />
+        <Route exact path="/sell-shoe/:id" element={<><BuyShoeDetailPage /><ChatAssistant /></>} />
         <Route exact path="/trade-shoe/:id" element={<><TradeShoeDetailPage /><ChatAssistant /></>} />
+        <Route exact path="/auction-shoe/:id" element={<><AuctionShoeDetailPage /><ChatAssistant /></>} />
 
         <Route path="/sneakers/:shoeId" element={<><ShoePage/><ChatAssistant /></>}/>
 

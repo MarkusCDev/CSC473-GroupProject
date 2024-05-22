@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { useUserAuth } from './UserAuthentication'
 
 const ChatComponent = () => {
-  const [isVisible, setIsVisible] = useState(true)
+  const {user} = useUserAuth()
+  const [email,setEmail] = useState(user?.email)
+  const [isVisible, setIsVisible] = useState(false)
+  const [inventory, setInventory] = useState("")
   const [messages, setMessages] = useState([
     { id: 1, sender: 'Tony Stark', text: 'Hey! Need help finding something? 👋' },
   ])
@@ -15,27 +20,63 @@ const ChatComponent = () => {
     setNewMessage(event.target.value)
   }
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (newMessage.trim()) {
       setMessages([...messages, { id: messages.length + 1, sender: 'User', text: newMessage }])
       setNewMessage('')
     }
+  
+    try {
+      const response = await axios.post('https://shoesphere-e2agf6geqq-ue.a.run.app/shoegpt/genquery', {
+        query: newMessage,
+        inventory: JSON.stringify(inventory), // Ensure inventory is in the correct format
+      }, {
+        headers: {
+          Authorization: user.email,
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      const aiResponse = response.data.query; // Use the correct key
+      console.log("AI response", aiResponse)
+      setMessages((prevMessages) => [...prevMessages, { id: prevMessages.length + 1, sender: 'Tony Stark', text: aiResponse }]);
+    } catch (error) {
+      console.error('Error getting AI response:', error);
+    }
   }
+  
 
+  const getInventory = async () => {
+    try {
+      const response = await axios.get('https://shoesphere-e2agf6geqq-ue.a.run.app/profile/get_shoe_names', {
+        headers: {
+          Authorization: user.email,
+          'Content-Type': 'application/json',
+        },
+      })
+      const inv = response.data;
+      setInventory(inv);
+    } catch (error) {
+      console.error('Error getting inventory:', error)
+      return []
+    }
+  }
+  
+  
   useEffect(() => {
-    
-  }, [])
+    getInventory()
+  }, [user])
 
   return (
     <div className="fixed bottom-0 right-0 mb-4 mr-4 max-w-md shadow-lg rounded-lg">
       <div className="animate-pulse p-4 opacity-85 bg-black text-white flex justify-between items-center rounded-t-lg">
         <button onClick={toggleChat}><h2 className="font-bold mr-2">AI Assistant</h2></button>
         <button onClick={toggleChat}>
-          {isVisible ? <><button className="text-gray-500 focus:outline-none">
+          {isVisible ? <>
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
-          </button></> : '+'}
+          </> : '+'}
         </button>
       </div>
       {isVisible && (
