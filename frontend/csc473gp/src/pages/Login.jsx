@@ -28,7 +28,7 @@ const Login = () => {
     const handleGoogleSignIn = async () => {
       try {
         await signInWithGoogle()
-        console.log("baki")
+        navigate('/')
         } catch (error) {
         setError(error.message)
         console.log(error)
