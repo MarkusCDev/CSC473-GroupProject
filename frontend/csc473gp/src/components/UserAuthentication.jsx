@@ -70,21 +70,6 @@ export function UserAuthContextProvider({ children }) {
             `${import.meta.env.VITE_APP_CLOUD_API_URL}/profile/create_profile`,
             {
               email: user.email,
-              cart: [],
-              transactions: [],
-              store: [],
-              notifications: [],
-              first_name: "",
-              last_name: "",
-              address: "",
-              city: "",
-              state: "",
-              zipcode: "",
-              phone: "",
-              gender: "",
-              size: "",
-              pfp: "",
-              card: "",
             },
             {
               headers: {

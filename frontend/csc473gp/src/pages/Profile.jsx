@@ -57,6 +57,7 @@ const Profile = () => {
     const file = event.target.files[0];
     if (!file) return;
 
+    const storage = getStorage()
     const storageRef = ref(storage, `Account/${file.name}`);
     const metadata = { contentType: file.type };
     const uploadTask = uploadBytesResumable(storageRef, file, metadata);
