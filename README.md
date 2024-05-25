@@ -87,8 +87,6 @@ website without having to bounce back and forth.
 
 [![Product Name Screen Shot](https://github.com/MarkusCDev/CSC473-GroupProject/blob/main/images/image6.png?raw=true)](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -181,6 +179,25 @@ Add `auth.json` file with your Firebase admin configuration:
 }
 ```
 
+### Back End Deployment setup
+Within Dockerfile include:
+```sh
+FROM python:3.9.17-bookworm
+
+ENV PYTHONUNBUFFERED True
+ENV APP_HOME /back-end
+WORKDIR $APP_HOME
+COPY . ./
+
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
+```
+
+```sh
+gcloud run deploy --source .
+```
 <!-- USAGE EXAMPLES -->
 ## Usage
 
