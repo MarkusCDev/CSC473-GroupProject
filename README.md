@@ -237,8 +237,6 @@ gcloud run deploy --source .
 ### Feature Development
 - [x] Implement user authentication
 - [x] Implement sneaker listing (buy/sell/trade/auction)
-- [x] Implement competitor pricing comparison
-- [x] Implement location-based listing views using Google Maps API
 - [x] Implement search bar with ChatGPT-Turbo-3 for shoe recommendations
 
 ### Testing and QA
